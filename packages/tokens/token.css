@@ -1,0 +1,145 @@
+:root {
+  /* ============================================
+     Colors - Background
+     ============================================ */
+  --color-background-page: #f8f9fa; /* Main page background */
+  --color-background: #ffffff; /* Card/container background */
+  --color-background-selection: rgba(
+    0,
+    0,
+    0,
+    0.05
+  ); /* Selected state background */
+
+  /* ============================================
+     Colors - Primary & Accent
+     ============================================ */
+  --color-primary: #3366ff; /* Primary blue (login icon) */
+  --color-primary-alt: #1890ff; /* Alternative primary blue */
+  --color-accent: #0d6efd; /* Accent blue (buttons, links, total assets) */
+  --color-accent-dark: #2c3e50; /* Dark blue (exchange button) */
+  --color-accent-dark-alt: #1f2d3d; /* Alternative dark blue */
+
+  /* ============================================
+     Colors - Text
+     ============================================ */
+  --color-text-primary: #212529; /* Main text color (headings, body) */
+  --color-text-primary-alt: #222222; /* Alternative primary text */
+  --color-text-secondary: #6c757d; /* Secondary text (descriptions, labels) */
+  --color-text-secondary-alt: #555555; /* Alternative secondary text */
+  --color-text-tertiary: #666666; /* Tertiary text */
+  --color-text-placeholder: #6c757d; /* Input placeholder text */
+  --color-text-inverse: #ffffff; /* White text on dark backgrounds */
+
+  /* ============================================
+     Colors - Status & Feedback
+     ============================================ */
+  --color-positive: #dc3545; /* Red for positive change (up arrow) */
+  --color-negative: #0d6efd; /* Blue for negative change (down arrow) */
+  --color-error: #dc3545; /* Error states */
+
+  /* ============================================
+     Colors - Buttons
+     ============================================ */
+  --color-button-primary-bg: #0d6efd; /* Primary button background (blue) */
+  --color-button-primary-text: #ffffff; /* Primary button text */
+  --color-button-secondary-bg: #212529; /* Secondary button background (dark) */
+  --color-button-secondary-text: #ffffff; /* Secondary button text */
+  --color-button-active-bg: #dc3545; /* Active button background (red - "살래요") */
+  --color-button-active-text: #ffffff; /* Active button text */
+  --color-button-bg: #222e42; /* Alternative button background */
+  --color-button-text: #ffffff; /* Button text */
+
+  /* ============================================
+     Colors - Borders
+     ============================================ */
+  --color-border-default: #dee2e6; /* Default border color */
+  --color-border-light: #e0e0e0; /* Light border (cards) */
+  --color-border-input: #d9d9d9; /* Input field border */
+  --color-border-input-alt: #cccccc; /* Alternative input border */
+  --color-border-table: #eeeeee; /* Table border */
+  --color-border-table-light: #f5f5f5; /* Light table border */
+
+  /* ============================================
+     Typography - Font Family
+     ============================================ */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Noto Sans KR",
+    "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+
+  /* ============================================
+     Typography - Font Sizes
+     ============================================ */
+  --font-size-xxl: 2rem; /* 32px - Main header */
+  --font-size-xl: 1.5rem; /* 24px - Large currency amounts */
+  --font-size-lg: 1.125rem; /* 18px - Card titles, form headers, app logo */
+  --font-size-md: 1rem; /* 16px - Body text, navigation, labels, buttons */
+  --font-size-sm: 0.875rem; /* 14px - Percentage change, small text */
+  --font-size-xs: 0.75rem; /* 12px - Extra small text */
+
+  /* Legacy font size tokens (for backward compatibility) */
+  --font-size-title: var(--font-size-xxl);
+  --font-size-subtitle: var(--font-size-md);
+  --font-size-label: var(--font-size-sm);
+  --font-size-body: var(--font-size-md);
+  --font-size-button: var(--font-size-md);
+
+  /* ============================================
+     Typography - Font Weights
+     ============================================ */
+  --font-weight-bold: 700; /* Bold for headings */
+  --font-weight-semibold: 600; /* Semi-bold for titles and buttons */
+  --font-weight-medium: 500; /* Medium for navigation, labels */
+  --font-weight-regular: 400; /* Regular for body text */
+
+  /* ============================================
+     Spacing
+     ============================================ */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-xxl: 3rem; /* 48px */
+
+  /* ============================================
+     Border Radius
+     ============================================ */
+  --radius-sm: 4px; /* Buttons, inputs */
+  --radius-md: 6px; /* Alternative buttons, inputs */
+  --radius-lg: 8px; /* Cards, containers */
+  --radius-xl: 10px; /* Large containers */
+  --radius-xxl: 12px; /* Form containers */
+
+  /* ============================================
+     Shadows
+     ============================================ */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1); /* Card shadow */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1); /* Card shadow (alias) */
+  --shadow-form: 0 2px 8px rgba(0, 0, 0, 0.08); /* Form container shadow */
+
+  /* ============================================
+     Borders
+     ============================================ */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-style-solid: solid;
+  --border-color-default: var(--color-border-default);
+  --border-color-input: var(--color-border-input);
+  --border-color-table: var(--color-border-table);
+
+  /* ============================================
+     Component Heights
+     ============================================ */
+  --height-header: 64px; /* Header height */
+  --height-button: 48px; /* Button height */
+  --height-input: 48px; /* Input field height */
+
+  /* ============================================
+     Component Padding
+     ============================================ */
+  --padding-card: 1.5rem; /* 24px - Card internal padding */
+  --padding-header-vertical: 1rem; /* 16px - Header vertical padding */
+  --padding-header-horizontal: 1.5rem; /* 24px - Header horizontal padding */
+  --padding-table-cell-vertical: 0.75rem; /* 12px - Table cell vertical padding */
+  --padding-table-cell-horizontal: 1rem; /* 16px - Table cell horizontal padding */
+}
