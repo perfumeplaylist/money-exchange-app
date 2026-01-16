@@ -11,4 +11,13 @@ export default defineConfig({
       "@packages": path.resolve(__dirname, "./packages"),
     },
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://exchange-example.switchflow.biz",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });
