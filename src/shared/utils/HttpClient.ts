@@ -8,6 +8,7 @@ import {
 import { AxiosClient } from "./AxiosClient";
 import { toDomainError } from "./toDomainError";
 import type { HttpResponse, ApiErrorResponse } from "./types";
+import { getLocalStorage } from "./storage";
 
 /**
  * HttpClient
@@ -35,6 +36,11 @@ export class HttpClient extends AxiosClient {
           config.headers["Content-Type"] = "application/json";
         }
 
+        const token = getLocalStorage("token");
+        if (token) {
+          config.headers["Authorization"] = `Bearer ${token}`;
+        }
+
         return config;
       },
       (error: AxiosError) => {
@@ -51,7 +57,7 @@ export class HttpClient extends AxiosClient {
     this.getTestInstance().interceptors.response.use(
       (response) => {
         // 성공 응답: data 필드만 추출하여 response.data에 할당
-        const httpResponse = response.data as HttpResponse<unknown>;
+        const httpResponse = response.data;
         response.data = httpResponse.data;
         return response;
       },
