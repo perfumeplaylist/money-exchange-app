@@ -1,13 +1,16 @@
-import { LoginPage } from "@/pages";
+// src/app/router/routes.ts
+import { MainLayout } from "@/shared/ui/MainLayout";
+import { HistoryPage, HomePage, LoginPage } from "@/pages";
 import { createBrowserRouter } from "react-router";
 
 export const router = createBrowserRouter([
+  { path: "/login", Component: LoginPage },
   {
     path: "/",
+    Component: MainLayout, // 공통 레이아웃
     children: [
-      // { index: true, Component: Home },
-      { path: "/login", Component: LoginPage },
-      //   { path: "/history", Component: History },
+      { path: "/home", Component: HomePage },
+      { path: "/history", Component: HistoryPage },
     ],
   },
 ]);
