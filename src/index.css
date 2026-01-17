@@ -1,2 +1,3 @@
 @import "tailwindcss";
-@import "@packages/tokens/token.css";
+@import "@packages/ui/index.css";
+@source "@packages";

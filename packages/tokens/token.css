@@ -1,9 +1,12 @@
-:root {
+@import "tailwindcss";
+
+@theme {
   /* ============================================
      Colors - Background
      ============================================ */
   --color-background-page: #f8f9fa; /* Main page background */
   --color-background: #ffffff; /* Card/container background */
+  --color-background-form: #f7f8f9; /* Form background */
   --color-background-selection: rgba(
     0,
     0,
@@ -30,6 +33,7 @@
   --color-text-tertiary: #666666; /* Tertiary text */
   --color-text-placeholder: #6c757d; /* Input placeholder text */
   --color-text-inverse: #ffffff; /* White text on dark backgrounds */
+  --color-form-label: #646f7c; /* Form label text */
 
   /* ============================================
      Colors - Status & Feedback
@@ -69,6 +73,7 @@
   /* ============================================
      Typography - Font Sizes
      ============================================ */
+  --font-size-xxxl: 3rem; /* 48px - Main header */
   --font-size-xxl: 2rem; /* 32px - Main header */
   --font-size-xl: 1.5rem; /* 24px - Large currency amounts */
   --font-size-lg: 1.125rem; /* 18px - Card titles, form headers, app logo */
@@ -142,4 +147,50 @@
   --padding-header-horizontal: 1.5rem; /* 24px - Header horizontal padding */
   --padding-table-cell-vertical: 0.75rem; /* 12px - Table cell vertical padding */
   --padding-table-cell-horizontal: 1rem; /* 16px - Table cell horizontal padding */
+
+  /* ============================================
+     Aliases for component class names
+     Tailwind v4: --text-text-primary creates text-text-primary class
+     ============================================ */
+  /* Text colors - for text-text-primary, text-text-secondary, etc. */
+  --text-text-primary: var(--color-text-primary);
+  --text-text-secondary: var(--color-text-secondary);
+  --text-text-tertiary: var(--color-text-tertiary);
+  --text-text-inverse: var(--color-text-inverse);
+  --text-text-placeholder: var(--color-text-placeholder);
+  --text-form-label: var(--color-form-label);
+  --text-positive: var(--color-positive);
+  --text-negative: var(--color-negative);
+  --text-error: var(--color-error);
+
+  /* Border colors - for border-border-light, border-border-default, etc. */
+  --border-border-light: var(--color-border-light);
+  --border-border-default: var(--color-border-default);
+  --border-border-input: var(--color-border-input);
+
+  /* Border radius - for rounded-radius-lg, rounded-radius-sm, etc. */
+  --radius-radius-sm: var(--radius-sm);
+  --radius-radius-md: var(--radius-md);
+  --radius-radius-lg: var(--radius-lg);
+  --radius-radius-xl: var(--radius-xl);
+  --radius-radius-xxl: var(--radius-xxl);
+
+  /* Spacing - for gap-spacing-xs, gap-spacing-sm, etc. */
+  --spacing-spacing-xs: var(--spacing-xs);
+  --spacing-spacing-sm: var(--spacing-sm);
+  --spacing-spacing-md: var(--spacing-md);
+  --spacing-spacing-lg: var(--spacing-lg);
+  --spacing-spacing-xl: var(--spacing-xl);
+  --spacing-spacing-xxl: var(--spacing-xxl);
+
+  /* Shadows - for shadow-shadow-card, shadow-shadow-form, etc. */
+  --shadow-shadow-card: var(--shadow-card);
+  --shadow-shadow-form: var(--shadow-form);
+
+  /* Padding - for p-padding-card */
+  --padding-padding-card: var(--padding-card);
+
+  /* Heights - for h-height-button, h-height-input */
+  --height-height-button: var(--height-button);
+  --height-height-input: var(--height-input);
 }
