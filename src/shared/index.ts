@@ -19,6 +19,7 @@ export {
 
 // UI components
 export { PageHeader, NavHeader } from "./ui/page-header";
+export { default as Divider } from "./ui/Divider";
 
 // Types
 export type { HttpResponse } from "./utils/types";

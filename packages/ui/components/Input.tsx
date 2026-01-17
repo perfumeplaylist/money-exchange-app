@@ -22,6 +22,10 @@ const inputVariants = cva(
         md: "h-height-input px-4 text-[length:var(--font-size-md)]",
         lg: "h-12 px-4 text-[length:var(--font-size-lg)]",
       },
+      variant: {
+        default: "",
+        result: "h-[75px] bg-[#F7F8FA] border-border-default text-right",
+      },
       error: {
         true: "border-error",
         false: "",
@@ -29,17 +33,18 @@ const inputVariants = cva(
     },
     defaultVariants: {
       size: "md",
+      variant: "default",
       error: false,
     },
   }
 );
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ size, error, className, ...props }, ref) => {
+  ({ size, variant, error, className, ...props }, ref) => {
     return (
       <input
         ref={ref}
-        className={cn(inputVariants({ size, error }), className)}
+        className={cn(inputVariants({ size, variant, error }), className)}
         {...props}
       />
     );
