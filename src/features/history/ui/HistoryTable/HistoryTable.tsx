@@ -3,18 +3,24 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import type { HistoryItem } from "@/entities/history/api/history.api";
 import { createColumns } from "./columns";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import history_query_option from "../../model/query.option";
 
-type HistoryTableProps = {
-  data: HistoryItem[];
-};
 
-const HistoryTable = ({ data }: HistoryTableProps) => {
+
+const HistoryTable = () => {
+
+  const { data: historyData } = useSuspenseQuery({
+    ...history_query_option.getHistory()
+  });
+
   const columns = createColumns();
 
+
+
   const table = useReactTable({
-    data,
+    data: historyData || [],
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -30,6 +36,7 @@ const HistoryTable = ({ data }: HistoryTableProps) => {
                   return null;
                 }
                 const columnId = header.column.id;
+                // TODO:리펙토링
                 const widthMap: Record<string, string> = {
                   orderId: "min-w-[263px]",
                   orderedAt: "min-w-[180px]",
@@ -46,11 +53,9 @@ const HistoryTable = ({ data }: HistoryTableProps) => {
                 return (
                   <th
                     key={header.id}
-                    className={`px-6 h-[49px] border-t border-b border-border-gray-200 bg-white ${
-                      isRightAlign ? "text-right" : "text-left"
-                    } text-sm font-medium text-text-primary ${
-                      widthMap[columnId] || ""
-                    }`}
+                    className={`px-6 h-[49px] border-t border-b border-border-gray-200 bg-white ${isRightAlign ? "text-right" : "text-left"
+                      } text-sm font-medium text-text-primary ${widthMap[columnId] || ""
+                      }`}
                   >
                     {flexRender(
                       header.column.columnDef.header,
@@ -63,7 +68,7 @@ const HistoryTable = ({ data }: HistoryTableProps) => {
           ))}
         </thead>
         <tbody>
-          {data.length === 0 ? (
+          {historyData.length === 0 ? (
             <tr>
               <td
                 colSpan={table.getAllColumns().length}
@@ -76,6 +81,7 @@ const HistoryTable = ({ data }: HistoryTableProps) => {
             table.getRowModel().rows.map((row) => (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => {
+                  // TODO:리펙토링
                   const columnId = cell.column.id;
                   const widthMap: Record<string, string> = {
                     orderId: "min-w-[263px]",
@@ -87,9 +93,8 @@ const HistoryTable = ({ data }: HistoryTableProps) => {
                   return (
                     <td
                       key={cell.id}
-                      className={`bg-white h-[49px] ${
-                        widthMap[columnId] || ""
-                      }`}
+                      className={`bg-white h-[49px] ${widthMap[columnId] || ""
+                        }`}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

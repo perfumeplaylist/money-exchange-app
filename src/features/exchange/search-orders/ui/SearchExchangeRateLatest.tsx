@@ -3,7 +3,7 @@ import { Triangle } from "lucide-react";
 import exchange_rates_query_option from "../model/query.option";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import type { CurrencyCode } from "@/shared";
-import type { ExchangeRate } from "@/entities/exchange";
+import type { ResponseExchangeRate } from "@/entities/exchange";
 
 interface SearchExchangeRateLatestProps {
   currency: CurrencyCode;
@@ -15,19 +15,19 @@ const SearchExchangeRateLatest = ({ currency }: SearchExchangeRateLatestProps) =
   // 첫번째 배열은 일본,두번쨰 배열은 미국
 
   const { data: exchangeRates } = useSuspenseQuery({
-    ...exchange_rates_query_option.getExchangeRatesLatest,
-      refetchInterval: 1000 * 60 * 1, // 1분마다 새로고침
-      refetchIntervalInBackground: true,
-      select: (data) => data.find((item: ExchangeRate) => item.currency === currency)!,
+    ...exchange_rates_query_option.getExchangeRatesLatest(),
+    refetchInterval: 1000 * 60 * 1, // 1분마다 새로고침
+    refetchIntervalInBackground: true,
+    select: (data) => data.find((item: ResponseExchangeRate) => item.currency === currency)!,
   });
 
   // changePercentage가 양수면 상승, 음수면 하락
   const isIncrease = exchangeRates.changePercentage > 0;
   const isDecrease = exchangeRates.changePercentage < 0;
-  
+
   // 변화율 포맷팅 (절댓값 사용)
   const formattedChangePercentage = `${isIncrease ? "+" : ""}${exchangeRates.changePercentage.toFixed(2)}%`;
-  
+
   // 금액 포맷팅
   const formattedRate = exchangeRates.rate.toLocaleString("ko-KR", {
     minimumFractionDigits: 2,
@@ -52,20 +52,20 @@ const SearchExchangeRateLatest = ({ currency }: SearchExchangeRateLatestProps) =
           {(isIncrease || isDecrease) && (
             <Flex direction="row" align="center" gap="xs">
               {isIncrease ? (
-                <Triangle 
-                  size={16} 
-                  className="text-increase" 
-                  fill="currentColor" 
+                <Triangle
+                  size={16}
+                  className="text-increase"
+                  fill="currentColor"
                 />
               ) : (
-                <Triangle 
-                  size={16} 
-                  className="text-decrease rotate-180" 
-                  fill="currentColor" 
+                <Triangle
+                  size={16}
+                  className="text-decrease rotate-180"
+                  fill="currentColor"
                 />
               )}
-              <Text 
-                variant="body_md" 
+              <Text
+                variant="body_md"
                 color={isIncrease ? "increase" : "decrease"}
               >
                 {formattedChangePercentage}
