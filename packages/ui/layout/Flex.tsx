@@ -39,12 +39,12 @@ const flexVariants = cva("flex", {
     },
     gap: {
       none: "gap-0",
-      xs: "gap-[var(--spacing-xs)]",
-      sm: "gap-[var(--spacing-sm)]",
-      md: "gap-[var(--spacing-md)]",
-      lg: "gap-[var(--spacing-lg)]",
-      xl: "gap-[var(--spacing-xl)]",
-      xxl: "gap-[var(--spacing-xxl)]",
+      xs: "gap-spacing-xs",
+      sm: "gap-spacing-sm",
+      md: "gap-spacing-md",
+      lg: "gap-spacing-lg",
+      xl: "gap-spacing-xl",
+      xxl: "gap-spacing-xxl",
     },
     wrap: {
       nowrap: "flex-nowrap",

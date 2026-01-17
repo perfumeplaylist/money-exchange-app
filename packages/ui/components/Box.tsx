@@ -17,28 +17,25 @@ type BoxProps<C extends ElementType = "div"> = PolymorphicComponentProp<
 const boxVariants = cva("", {
   variants: {
     variant: {
-      card: "bg-[var(--color-background)] border border-[var(--color-border-light)] rounded-[var(--radius-lg)] shadow-[var(--shadow-card)] p-[var(--padding-card)]",
-      container:
-        "bg-[var(--color-background)] border border-[var(--color-border-default)] rounded-[var(--radius-lg)]",
-      panel:
-        "bg-[var(--color-background)] border border-[var(--color-border-light)] rounded-[var(--radius-md)]",
-      form: "bg-[var(--color-background)] border border-[var(--color-border-input)] rounded-[var(--radius-lg)] shadow-[var(--shadow-form)] p-[var(--padding-card)]",
-      outline:
-        "border border-[var(--color-border-default)] rounded-[var(--radius-sm)]",
+      card: "bg-background border border-border-light rounded-radius-lg shadow-shadow-card p-padding-card",
+      container: "bg-background border border-border-default rounded-radius-lg",
+      panel: "bg-background border border-border-light rounded-radius-md",
+      form: "bg-background-form border border-border-input rounded-radius-lg shadow-shadow-form p-padding-card",
+      outline: "border border-border-default rounded-radius-sm",
       none: "",
     },
     padding: {
       none: "p-0",
       sm: "p-2",
-      md: "p-[var(--padding-card)]",
+      md: "p-padding-card",
       lg: "p-6",
     },
     rounded: {
       none: "rounded-none",
-      sm: "rounded-[var(--radius-sm)]",
-      md: "rounded-[var(--radius-md)]",
-      lg: "rounded-[var(--radius-lg)]",
-      xl: "rounded-[var(--radius-xl)]",
+      sm: "rounded-radius-sm",
+      md: "rounded-radius-md",
+      lg: "rounded-radius-lg",
+      xl: "rounded-radius-xl",
     },
   },
   defaultVariants: {

@@ -15,18 +15,17 @@ type InputProps = InputVariants &
  * Based on design tokens from token.css
  */
 const inputVariants = cva(
-  "w-full bg-[var(--color-background)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-placeholder)] border border-[var(--color-border-input)] rounded-[var(--radius-sm)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed",
+  "w-full bg-background text-text-primary placeholder:text-text-placeholder border border-border-input rounded-radius-sm transition-colors outline-none focus:outline-none focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed",
   {
     variants: {
       size: {
-        sm: "h-9 px-3 text-[var(--font-size-sm)]",
-        md: "h-[var(--height-input)] px-4 text-[var(--font-size-md)]",
-        lg: "h-12 px-4 text-[var(--font-size-lg)]",
+        sm: "h-9 px-3 text-[length:var(--font-size-sm)]",
+        md: "h-height-input px-4 text-[length:var(--font-size-md)]",
+        lg: "h-12 px-4 text-[length:var(--font-size-lg)]",
       },
       error: {
-        true: "border-[var(--color-error)] focus-visible:ring-[var(--color-error)]",
-        false:
-          "focus-visible:ring-[var(--color-accent)] focus-visible:border-[var(--color-accent)]",
+        true: "border-error",
+        false: "",
       },
     },
     defaultVariants: {

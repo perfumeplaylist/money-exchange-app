@@ -13,36 +13,38 @@ type TextProps<C extends ElementType = "p"> = PolymorphicComponentProp<
  * Text Variants using CVA
  * Based on design tokens from token.css
  */
+// packages/ui/components/Text.tsx
+
 const textVariants = cva("", {
   variants: {
     variant: {
       // 역할 기반 - 가장 일반적인 패턴
-      "heading-xxl":
-        "text-[var(--font-size-xxl)] font-[var(--font-weight-bold)] text-[var(--color-text-primary)]",
-      "heading-xl":
-        "text-[var(--font-size-xl)] font-[var(--font-weight-bold)] text-[var(--color-text-primary)]",
-      "heading-lg":
-        "text-[var(--font-size-lg)] font-[var(--font-weight-semibold)] text-[var(--color-text-primary)]",
-      "body-lg":
-        "text-[var(--font-size-lg)] font-[var(--font-weight-regular)] text-[var(--color-text-primary)]",
-      "body-md":
-        "text-[var(--font-size-md)] font-[var(--font-weight-regular)] text-[var(--color-text-primary)]",
-      "body-sm":
-        "text-[var(--font-size-sm)] font-[var(--font-weight-regular)] text-[var(--color-text-primary)]",
+      heading_xxl:
+        "text-[length:var(--font-size-xxxl)] font-bold text-text-primary",
+      heading_xl:
+        "text-[length:var(--font-size-xxl)] font-bold text-text-primary",
+      heading_lg:
+        "text-[length:var(--font-size-lg)] font-semibold text-text-primary",
+      body_lg:
+        "text-[length:var(--font-size-lg)] font-regular text-text-primary",
+      body_md:
+        "text-[length:var(--font-size-md)] font-regular text-text-primary",
+      body_sm:
+        "text-[length:var(--font-size-sm)] font-regular text-text-primary",
       caption:
-        "text-[var(--font-size-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-secondary)]",
-      label:
-        "text-[var(--font-size-sm)] font-[var(--font-weight-medium)] text-[var(--color-text-primary)]",
+        "text-[length:var(--font-size-sm)] font-medium text-text-secondary",
+      label: "text-[length:var(--font-size-sm)] font-medium text-form-label",
     },
     color: {
       // 색상만 오버라이드 가능
-      primary: "text-[var(--color-text-primary)]",
-      secondary: "text-[var(--color-text-secondary)]",
-      tertiary: "text-[var(--color-text-tertiary)]",
-      inverse: "text-[var(--color-text-inverse)]",
-      positive: "text-[var(--color-positive)]",
-      negative: "text-[var(--color-negative)]",
-      error: "text-[var(--color-error)]",
+      primary: "text-text-primary",
+      secondary: "text-text-secondary",
+      tertiary: "text-text-tertiary",
+      inverse: "text-text-inverse",
+      positive: "text-positive",
+      negative: "text-negative",
+      error: "text-error",
+      form_label: "text-form-label",
     },
     align: {
       left: "text-left",
@@ -51,7 +53,7 @@ const textVariants = cva("", {
     },
   },
   defaultVariants: {
-    variant: "body-md",
+    variant: "body_md",
     color: "primary",
     align: "left",
   },
