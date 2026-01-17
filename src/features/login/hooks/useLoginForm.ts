@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import login_query_option from "../model/query.option";
 import { setLocalStorage } from "@/shared/utils/storage";
+import { storage_key } from "@/shared";
 
 const useLoginForm = () => {
   const form = useForm<LoginFormData>({
@@ -24,7 +25,7 @@ const useLoginForm = () => {
       {
         onSuccess: (data) => {
           try {
-            setLocalStorage<string>("auth_token", data.token);
+            setLocalStorage<string>(storage_key.auth_token, data.token);
             navigate("/home");
           } catch (error: unknown) {
             if (error instanceof Error) {

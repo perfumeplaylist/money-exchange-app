@@ -5,11 +5,14 @@ import {
   isAxiosError,
 } from "axios";
 
-import { AxiosClient } from "./AxiosClient";
-import { toDomainError } from "./toDomainError";
-import type { HttpResponse, ApiErrorResponse } from "./types";
-import { getLocalStorage } from "./storage";
-
+import {
+  storage_key,
+  getLocalStorage,
+  type HttpResponse,
+  type ApiErrorResponse,
+  AxiosClient,
+  toDomainError,
+} from "@/shared";
 /**
  * HttpClient
  * AxiosClient를 상속하며 기본 인터셉터를 제공합니다.
@@ -36,7 +39,7 @@ export class HttpClient extends AxiosClient {
           config.headers["Content-Type"] = "application/json";
         }
 
-        const token = getLocalStorage("token");
+        const token = getLocalStorage(storage_key.auth_token);
         if (token) {
           config.headers["Authorization"] = `Bearer ${token}`;
         }

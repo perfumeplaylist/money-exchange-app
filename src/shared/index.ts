@@ -1,10 +1,5 @@
 // Error classes
-export {
-  ApiError,
-  DomainError,
-  WalletError,
-  CurrencyError,
-} from './errors';
+export { ApiError, DomainError, WalletError, CurrencyError } from "./errors";
 
 export type {
   ApiErrorCode,
@@ -12,7 +7,7 @@ export type {
   CurrencyErrorCode,
   ErrorCode,
   ApiErrorResponse,
-} from './errors';
+} from "./errors";
 
 // ErrorBoundary components
 export {
@@ -20,7 +15,25 @@ export {
   GlobalErrorBoundary,
   SectionErrorBoundary,
   FallbackUI,
-} from './error-boundary';
+} from "./error-boundary";
+
+// Types
+export type { HttpResponse } from "./utils/types";
 
 // Utilities
-export { extractErrorCode, toDomainError } from './utils';
+export {
+  extractErrorCode,
+  toDomainError,
+  HttpClient,
+  AxiosClient,
+} from "./utils";
+
+// Storage
+export {
+  getLocalStorage,
+  setLocalStorage,
+  removeLocalStorage,
+} from "./utils/storage";
+
+// Constants
+export * from "./constants/storage";
