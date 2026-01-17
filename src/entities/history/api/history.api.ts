@@ -1,12 +1,12 @@
+import type { CurrencyCode } from "@/shared";
 import { httpClient } from "@/shared/utils/HttpClient";
 
-type Currency = "KRW" | "USD" | "JPY";
 
 export type HistoryItem = {
   orderId: number;
-  fromCurrency: Currency;
+  fromCurrency: CurrencyCode;
   fromAmount: number;
-  toCurrency: Currency;
+  toCurrency: CurrencyCode;
   toAmount: number;
   appliedRate: number;
   orderedAt: string;

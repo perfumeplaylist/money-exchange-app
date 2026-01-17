@@ -43,6 +43,8 @@
   --color-positive: #dc3545; /* Red for positive change (up arrow) */
   --color-negative: #0d6efd; /* Blue for negative change (down arrow) */
   --color-error: #dc3545; /* Error states */
+  --color-increase: #FE5050; /* Red for increase (up arrow) */
+  --color-decrease: #3B6EFF; /* Blue for decrease (down arrow) */
 
   /* ============================================
      Colors - Buttons
@@ -68,6 +70,7 @@
   --color-border-table: #eeeeee; /* Table border */
   --color-border-table-light: #f5f5f5; /* Light table border */
   --color-border-gray-200: #e5e7eb; /* Gray-200 border color */
+  --color-border-wallet: #D0D6DB; /* Wallet card border */
 
   /* ============================================
      Typography - Font Family
@@ -97,6 +100,7 @@
   /* ============================================
      Typography - Font Weights
      ============================================ */
+  --font-weight-extrabold: 800; /* Extra bold for wallet title */
   --font-weight-bold: 700; /* Bold for headings */
   --font-weight-semibold: 600; /* Semi-bold for titles and buttons */
   --font-weight-medium: 500; /* Medium for navigation, labels */
@@ -121,6 +125,7 @@
   --radius-lg: 8px; /* Cards, containers */
   --radius-xl: 10px; /* Large containers */
   --radius-xxl: 12px; /* Form containers */
+  --radius-wallet: 12px; /* Wallet card border radius */
   --radius-table: 16px; /* Table border radius */
 
   /* ============================================
@@ -151,13 +156,16 @@
   /* ============================================
      Component Padding
      ============================================ */
+     
   --padding-card: 1.5rem; /* 24px - Card internal padding */
+  --padding-card-lg: 2rem; /* 32px - Card internal padding */
   --padding-header-vertical: 1rem; /* 16px - Header vertical padding */
   --padding-header-horizontal: 1.5rem; /* 24px - Header horizontal padding */
   --padding-table-cell-vertical: 0.75rem; /* 12px - Table cell vertical padding */
   --padding-table-cell-horizontal: 1rem; /* 16px - Table cell horizontal padding */
   --padding-table-container-vertical: 1rem; /* 16px - Table container vertical padding */
   --padding-table-header-horizontal: 1.5rem; /* 24px - Table header horizontal padding */
+  --padding-wallet: 24px 32px; /* 24px vertical, 32px horizontal - Wallet card padding */
 
   /* ============================================
      Table Column Widths
@@ -184,12 +192,16 @@
   --text-positive: var(--color-positive);
   --text-negative: var(--color-negative);
   --text-error: var(--color-error);
+  --text-increase: var(--color-increase);
+  --text-decrease: var(--color-decrease);
+  --text-accent: var(--color-accent);
 
   /* Border colors - for border-border-light, border-border-default, etc. */
   --border-border-light: var(--color-border-light);
   --border-border-default: var(--color-border-default);
   --border-border-input: var(--color-border-input);
   --border-border-gray-200: var(--color-border-gray-200);
+  --border-border-wallet: var(--color-border-wallet);
 
   /* Border radius - for rounded-radius-lg, rounded-radius-sm, etc. */
   --radius-radius-sm: var(--radius-sm);
@@ -197,6 +209,7 @@
   --radius-radius-lg: var(--radius-lg);
   --radius-radius-xl: var(--radius-xl);
   --radius-radius-xxl: var(--radius-xxl);
+  --radius-radius-wallet: var(--radius-wallet);
   --radius-radius-table: var(--radius-table);
 
   /* Spacing - for gap-spacing-xs, gap-spacing-sm, etc. */
@@ -214,6 +227,7 @@
   /* Padding - for p-padding-card */
   --padding-padding-card: var(--padding-card);
   --padding-padding-form: 24px 32px;
+  --padding-padding-wallet: var(--padding-wallet);
 
   /* Heights - for h-height-button, h-height-input */
   --height-height-button: var(--height-button);

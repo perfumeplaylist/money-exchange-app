@@ -1,13 +1,6 @@
 import { httpClient } from "@/shared/utils/HttpClient";
+import type { GetWalletsResponse } from "../model/types";
 
-type GetWalletsResponse = {
-  totalKrwBalance: number;
-  wallets: {
-    walletId: number;
-    currency: string;
-    balance: number;
-  }[];
-};
 
 export const getWalletsApi = () => {
   return httpClient.get<GetWalletsResponse>("/wallets");

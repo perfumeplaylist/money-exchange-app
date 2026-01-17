@@ -18,9 +18,11 @@ const boxVariants = cva("", {
   variants: {
     variant: {
       card: "bg-background border border-border-light rounded-radius-lg shadow-shadow-card p-padding-card",
+      small_card:"bg-background border border-border-light rounded-radius-lg px-padding-card-lg py-padding-card-lg",
       container: "bg-background border border-border-default rounded-radius-lg",
       panel: "bg-background border border-border-light rounded-radius-md",
       form: "bg-background-form border border-border-input rounded-radius-lg shadow-shadow-form p-padding-form",
+      wallet: "bg-background-form border border-border-wallet rounded-radius-wallet p-padding-wallet",
       outline: "border border-border-default rounded-radius-sm",
       none: "",
     },
