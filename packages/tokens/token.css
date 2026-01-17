@@ -28,6 +28,8 @@
      ============================================ */
   --color-text-primary: #212529; /* Main text color (headings, body) */
   --color-text-primary-alt: #222222; /* Alternative primary text */
+  --color-text-primary-link-hover: #36414c; /* Link text hover */
+  --color-text-primary-link: #8899aa; /* Link text */
   --color-text-secondary: #6c757d; /* Secondary text (descriptions, labels) */
   --color-text-secondary-alt: #555555; /* Alternative secondary text */
   --color-text-tertiary: #666666; /* Tertiary text */
@@ -76,6 +78,7 @@
   --font-size-xxxl: 3rem; /* 48px - Main header */
   --font-size-xxl: 2rem; /* 32px - Main header */
   --font-size-xl: 1.5rem; /* 24px - Large currency amounts */
+  --font-size-smxl: 1.25rem; /* 20px - Large currency amounts */
   --font-size-lg: 1.125rem; /* 18px - Card titles, form headers, app logo */
   --font-size-md: 1rem; /* 16px - Body text, navigation, labels, buttons */
   --font-size-sm: 0.875rem; /* 14px - Percentage change, small text */
@@ -154,6 +157,8 @@
      ============================================ */
   /* Text colors - for text-text-primary, text-text-secondary, etc. */
   --text-text-primary: var(--color-text-primary);
+  --text-text-primary-link-hover: var(--color-text-primary-link-hover);
+  --text-text-primary-link: var(--color-text-primary-link);
   --text-text-secondary: var(--color-text-secondary);
   --text-text-tertiary: var(--color-text-tertiary);
   --text-text-inverse: var(--color-text-inverse);

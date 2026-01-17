@@ -15,7 +15,10 @@ export {
   GlobalErrorBoundary,
   SectionErrorBoundary,
   FallbackUI,
-} from "./error-boundary";
+} from "./ui/error-boundary";
+
+// UI components
+export { PageHeader, NavHeader } from "./ui/page-header";
 
 // Types
 export type { HttpResponse } from "./utils/types";

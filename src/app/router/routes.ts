@@ -1,5 +1,5 @@
 // src/app/router/routes.ts
-import { MainLayout } from "@/shared/ui/MainLayout";
+import { MainLayout } from "@/app/layout";
 import { HistoryPage, HomePage, LoginPage } from "@/pages";
 import { createBrowserRouter } from "react-router";
 

@@ -23,8 +23,12 @@ const textVariants = cva("", {
         "text-[length:var(--font-size-xxxl)] font-bold text-text-primary",
       heading_xl:
         "text-[length:var(--font-size-xxl)] font-bold text-text-primary",
+      link_strong:
+        "text-[length:var(--font-size-smxl)] font-bold text-[var(--color-text-primary-link-hover)]",
       heading_lg:
         "text-[length:var(--font-size-lg)] font-semibold text-text-primary",
+      link_lg:
+        "text-[length:var(--font-size-smxl)] font-medium text-[var(--color-text-primary-link)]",
       body_lg:
         "text-[length:var(--font-size-lg)] font-regular text-text-primary",
       body_md:
@@ -44,6 +48,8 @@ const textVariants = cva("", {
       positive: "text-positive",
       negative: "text-negative",
       error: "text-error",
+      link_hover: "text-text-primary-link-hover",
+      link: "text-text-primary-link",
       form_label: "text-form-label",
     },
     align: {
