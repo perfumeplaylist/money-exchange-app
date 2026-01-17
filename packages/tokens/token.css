@@ -67,6 +67,7 @@
   --color-border-input-alt: #cccccc; /* Alternative input border */
   --color-border-table: #eeeeee; /* Table border */
   --color-border-table-light: #f5f5f5; /* Light table border */
+  --color-border-gray-200: #e5e7eb; /* Gray-200 border color */
 
   /* ============================================
      Typography - Font Family
@@ -120,6 +121,7 @@
   --radius-lg: 8px; /* Cards, containers */
   --radius-xl: 10px; /* Large containers */
   --radius-xxl: 12px; /* Form containers */
+  --radius-table: 16px; /* Table border radius */
 
   /* ============================================
      Shadows
@@ -144,6 +146,7 @@
   --height-header: 64px; /* Header height */
   --height-button: 48px; /* Button height */
   --height-input: 48px; /* Input field height */
+  --height-table-cell: 49px; /* Table cell height */
 
   /* ============================================
      Component Padding
@@ -153,6 +156,17 @@
   --padding-header-horizontal: 1.5rem; /* 24px - Header horizontal padding */
   --padding-table-cell-vertical: 0.75rem; /* 12px - Table cell vertical padding */
   --padding-table-cell-horizontal: 1rem; /* 16px - Table cell horizontal padding */
+  --padding-table-container-vertical: 1rem; /* 16px - Table container vertical padding */
+  --padding-table-header-horizontal: 1.5rem; /* 24px - Table header horizontal padding */
+
+  /* ============================================
+     Table Column Widths
+     ============================================ */
+  --width-table-order-id: 263px; /* 거래 ID */
+  --width-table-ordered-at: 180px; /* 거래 일시 */
+  --width-table-from-amount: 263px; /* 매수 금액 */
+  --width-table-applied-rate: 263px; /* 체결 환율 */
+  --width-table-to-amount: 263px; /* 매도 금액 */
 
   /* ============================================
      Aliases for component class names
@@ -175,6 +189,7 @@
   --border-border-light: var(--color-border-light);
   --border-border-default: var(--color-border-default);
   --border-border-input: var(--color-border-input);
+  --border-border-gray-200: var(--color-border-gray-200);
 
   /* Border radius - for rounded-radius-lg, rounded-radius-sm, etc. */
   --radius-radius-sm: var(--radius-sm);
@@ -182,6 +197,7 @@
   --radius-radius-lg: var(--radius-lg);
   --radius-radius-xl: var(--radius-xl);
   --radius-radius-xxl: var(--radius-xxl);
+  --radius-radius-table: var(--radius-table);
 
   /* Spacing - for gap-spacing-xs, gap-spacing-sm, etc. */
   --spacing-spacing-xs: var(--spacing-xs);
@@ -202,4 +218,5 @@
   /* Heights - for h-height-button, h-height-input */
   --height-height-button: var(--height-button);
   --height-height-input: var(--height-input);
+  --height-height-table-cell: var(--height-table-cell);
 }

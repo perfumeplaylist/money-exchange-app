@@ -1,4 +1,5 @@
 import { formatDateTime } from "@/shared";
+import { Text } from "@packages/ui/components";
 
 /**
  * 숫자에 천 단위 구분 기호 추가
@@ -23,10 +24,18 @@ const formatRate = (rate: number): string => {
 /**
  * 공통 Cell 래퍼 스타일
  */
-const CellWrapper = ({ children }: { children: React.ReactNode }) => {
+const CellWrapper = ({
+  children,
+  align = "left",
+}: {
+  children: React.ReactNode;
+  align?: "left" | "right" | "center";
+}) => {
   return (
-    <div className="h-full flex items-center px-6 text-sm text-text-primary">
-      {children}
+    <div className="h-full flex items-center px-6">
+      <Text variant="body_sm" align={align} className="w-full">
+        {children}
+      </Text>
     </div>
   );
 };
@@ -58,7 +67,7 @@ export const FromAmountCell = ({
 }) => {
   const formatted = formatNumber(amount);
   return (
-    <CellWrapper>
+    <CellWrapper align="right">
       {formatted} {currency}
     </CellWrapper>
   );
@@ -69,7 +78,7 @@ export const FromAmountCell = ({
  */
 export const AppliedRateCell = ({ value }: { value: number }) => {
   const formatted = formatRate(value);
-  return <CellWrapper>{formatted}</CellWrapper>;
+  return <CellWrapper align="right">{formatted}</CellWrapper>;
 };
 
 /**
@@ -84,7 +93,7 @@ export const ToAmountCell = ({
 }) => {
   const formatted = formatNumber(amount);
   return (
-    <CellWrapper>
+    <CellWrapper align="right">
       {formatted} {currency}
     </CellWrapper>
   );

@@ -37,10 +37,18 @@ const HistoryTable = ({ data }: HistoryTableProps) => {
                   appliedRate: "min-w-[263px] ",
                   toAmount: "min-w-[263px] ",
                 };
+                const rightAlignColumns = [
+                  "fromAmount",
+                  "appliedRate",
+                  "toAmount",
+                ];
+                const isRightAlign = rightAlignColumns.includes(columnId);
                 return (
                   <th
                     key={header.id}
-                    className={`px-6 h-[49px] border-t border-b border-border-gray-200 bg-white text-left text-sm font-medium text-text-primary ${
+                    className={`px-6 h-[49px] border-t border-b border-border-gray-200 bg-white ${
+                      isRightAlign ? "text-right" : "text-left"
+                    } text-sm font-medium text-text-primary ${
                       widthMap[columnId] || ""
                     }`}
                   >

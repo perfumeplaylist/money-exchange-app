@@ -40,3 +40,6 @@ export {
 
 // Constants
 export * from "./constants/storage";
+
+// Utils
+export { formatDateTime } from "./utils/formatDate";
