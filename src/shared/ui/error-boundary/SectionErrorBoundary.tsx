@@ -1,6 +1,5 @@
-import { Component, type ReactNode, type ErrorInfo } from 'react';
-import { DomainError } from '../errors/DomainError';
-import { FallbackUI } from './FallbackUI';
+import { Component, type ReactNode, type ErrorInfo } from "react";
+import { DomainError, FallbackUI } from "@/shared";
 
 interface SectionErrorBoundaryProps {
   children: ReactNode;
@@ -69,13 +68,19 @@ export class SectionErrorBoundary extends Component<
 
   render() {
     // 담당하지 않는 에러는 상위로 전파
-    if (this.state.error && !(this.state.error instanceof this.props.errorType)) {
+    if (
+      this.state.error &&
+      !(this.state.error instanceof this.props.errorType)
+    ) {
       throw this.state.error;
     }
 
     if (this.state.hasError && this.state.error) {
       return (
-        <FallbackUI error={this.state.error} resetErrorBoundary={this.handleReset} />
+        <FallbackUI
+          error={this.state.error}
+          resetErrorBoundary={this.handleReset}
+        />
       );
     }
 

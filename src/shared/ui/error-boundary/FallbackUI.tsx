@@ -1,5 +1,4 @@
-import { extractErrorCode } from '../utils/extractErrorCode';
-import type { ErrorCode } from '../errors/types';
+import { extractErrorCode, type ErrorCode } from "@/shared";
 
 interface FallbackUIProps {
   error: Error;
@@ -8,24 +7,25 @@ interface FallbackUIProps {
 
 const errorMessages: Partial<Record<ErrorCode, string>> = {
   // API 공통 에러
-  BAD_REQUEST: '잘못된 요청입니다.',
-  NOT_FOUND: '요청한 리소스를 찾을 수 없습니다.',
-  UNAUTHORIZED: '인증이 필요합니다.',
-  VALIDATION_ERROR: '입력값 검증에 실패했습니다.',
-  MISSING_PARAMETER: '필수 파라미터가 누락되었습니다.',
+  BAD_REQUEST: "잘못된 요청입니다.",
+  NOT_FOUND: "요청한 리소스를 찾을 수 없습니다.",
+  UNAUTHORIZED: "인증이 필요합니다.",
+  VALIDATION_ERROR: "입력값 검증에 실패했습니다.",
+  MISSING_PARAMETER: "필수 파라미터가 누락되었습니다.",
 
   // Wallet/Exchange 도메인 에러
-  WALLET_INSUFFICIENT_BALANCE: '잔액이 부족합니다.',
-  INVALID_DEPOSIT_AMOUNT: '입금 금액이 유효하지 않습니다.',
-  INVALID_WITHDRAW_AMOUNT: '출금 금액이 유효하지 않습니다.',
+  WALLET_INSUFFICIENT_BALANCE: "잔액이 부족합니다.",
+  INVALID_DEPOSIT_AMOUNT: "입금 금액이 유효하지 않습니다.",
+  INVALID_WITHDRAW_AMOUNT: "출금 금액이 유효하지 않습니다.",
 
   // Currency/Exchange 정책 에러
-  CURRENCY_MISMATCH: '선택한 통화가 일치하지 않습니다.',
-  INVALID_AMOUNT_SCALE: '금액 단위가 올바르지 않습니다.',
-  EXCHANGE_RATE_CURRENCY_MISMATCH: '환율 통화가 일치하지 않습니다.',
-  UNSUPPORTED_FOREX_CONVERSION_CURRENCY: '지원하지 않는 외환 변환 통화입니다.',
-  INVALID_EXCHANGE_RATE_CURRENCY: '유효하지 않은 환율 통화입니다.',
-  UNSUPPORTED_CURRENCY_FOR_KRW_CONVERSION: '원화 변환을 지원하지 않는 통화입니다.',
+  CURRENCY_MISMATCH: "선택한 통화가 일치하지 않습니다.",
+  INVALID_AMOUNT_SCALE: "금액 단위가 올바르지 않습니다.",
+  EXCHANGE_RATE_CURRENCY_MISMATCH: "환율 통화가 일치하지 않습니다.",
+  UNSUPPORTED_FOREX_CONVERSION_CURRENCY: "지원하지 않는 외환 변환 통화입니다.",
+  INVALID_EXCHANGE_RATE_CURRENCY: "유효하지 않은 환율 통화입니다.",
+  UNSUPPORTED_CURRENCY_FOR_KRW_CONVERSION:
+    "원화 변환을 지원하지 않는 통화입니다.",
 };
 
 export function FallbackUI({ error, resetErrorBoundary }: FallbackUIProps) {
@@ -33,7 +33,7 @@ export function FallbackUI({ error, resetErrorBoundary }: FallbackUIProps) {
   const message =
     errorCode && errorMessages[errorCode]
       ? errorMessages[errorCode]
-      : error.message || '알 수 없는 오류가 발생했습니다.';
+      : error.message || "알 수 없는 오류가 발생했습니다.";
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">

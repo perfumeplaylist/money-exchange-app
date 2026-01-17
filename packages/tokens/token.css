@@ -55,6 +55,8 @@
   --color-button-active-text: #ffffff; /* Active button text */
   --color-button-bg: #222e42; /* Alternative button background */
   --color-button-text: #ffffff; /* Button text */
+  --color-button-logout-bg: #3479eb; /* Logout button background */
+  --color-button-logout-text: #ffffff; /* Logout button text */
 
   /* ============================================
      Colors - Borders

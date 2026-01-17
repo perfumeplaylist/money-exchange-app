@@ -1,7 +1,6 @@
-import { Component, type ReactNode, type ErrorInfo } from 'react';
-import { ApiError } from '../errors/ApiError';
-import { DomainError } from '../errors/DomainError';
-import { FallbackUI } from './FallbackUI';
+import { Component, type ReactNode, type ErrorInfo } from "react";
+import { ApiError, DomainError } from "@/shared";
+import { FallbackUI } from "./FallbackUI";
 
 interface GlobalErrorBoundaryProps {
   children: ReactNode;
@@ -28,7 +27,9 @@ export class GlobalErrorBoundary extends Component<
     };
   }
 
-  static getDerivedStateFromError(error: Error): GlobalErrorBoundaryState | null {
+  static getDerivedStateFromError(
+    error: Error
+  ): GlobalErrorBoundaryState | null {
     // ApiError만 처리하고 DomainError는 처리하지 않음
     if (error instanceof ApiError && !(error instanceof DomainError)) {
       return {
@@ -45,7 +46,11 @@ export class GlobalErrorBoundary extends Component<
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // ApiError만 로깅
     if (error instanceof ApiError && !(error instanceof DomainError)) {
-      console.error('GlobalErrorBoundary caught an ApiError:', error, errorInfo);
+      console.error(
+        "GlobalErrorBoundary caught an ApiError:",
+        error,
+        errorInfo
+      );
     }
 
     // DomainError는 상위로 전파
@@ -69,7 +74,10 @@ export class GlobalErrorBoundary extends Component<
 
     if (this.state.hasError && this.state.error) {
       return (
-        <FallbackUI error={this.state.error} resetErrorBoundary={this.handleReset} />
+        <FallbackUI
+          error={this.state.error}
+          resetErrorBoundary={this.handleReset}
+        />
       );
     }
 
