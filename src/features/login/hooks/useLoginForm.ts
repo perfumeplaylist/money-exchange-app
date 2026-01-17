@@ -4,14 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import login_query_option from "../model/query.option";
-import useLocalStorage from "@/shared/hooks/useLocalStorage";
+import { setLocalStorage } from "@/shared/utils/storage";
 
 const useLoginForm = () => {
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
   });
-  const [, setToken] = useLocalStorage<string>("token", "");
 
   const navigate = useNavigate();
 
@@ -24,8 +23,14 @@ const useLoginForm = () => {
       { email: data.email },
       {
         onSuccess: (data) => {
-          setToken(data.data.token);
-          navigate("/home");
+          try {
+            setLocalStorage<string>("auth_token", data.token);
+            navigate("/home");
+          } catch (error: unknown) {
+            if (error instanceof Error) {
+              form.setError("email", { message: error.message });
+            }
+          }
         },
         onError: (error) => {
           form.setError("email", { message: error.message });

@@ -57,9 +57,9 @@ export class HttpClient extends AxiosClient {
     this.getTestInstance().interceptors.response.use(
       (response) => {
         // 성공 응답: data 필드만 추출하여 response.data에 할당
-        const httpResponse = response.data;
+        const httpResponse = response.data as HttpResponse<unknown>;
         response.data = httpResponse.data;
-        return response;
+        return response; // response 객체 전체를 반환해야 함
       },
       async (error: AxiosError<HttpResponse<unknown>>) => {
         if (!isAxiosError(error)) {
