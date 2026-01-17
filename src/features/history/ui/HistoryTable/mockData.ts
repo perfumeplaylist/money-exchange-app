@@ -1,0 +1,98 @@
+import type { HistoryItem } from "@/entities/history/api/history.api";
+
+/**
+ * 디자인 테스트용 mock 데이터
+ * 그림과 동일한 데이터 구조
+ */
+export const mockHistoryData: HistoryItem[] = [
+  {
+    orderId: 10,
+    fromCurrency: "USD",
+    fromAmount: 32.5,
+    toCurrency: "KRW",
+    toAmount: 51976,
+    appliedRate: 1383.07,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 9,
+    fromCurrency: "USD",
+    fromAmount: 500,
+    toCurrency: "KRW",
+    toAmount: 699690,
+    appliedRate: 1383.07,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 8,
+    fromCurrency: "USD",
+    fromAmount: 325.5,
+    toCurrency: "KRW",
+    toAmount: 454734,
+    appliedRate: 1609.7,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 7,
+    fromCurrency: "USD",
+    fromAmount: 325.5,
+    toCurrency: "KRW",
+    toAmount: 454734,
+    appliedRate: 1609.7,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 6,
+    fromCurrency: "USD",
+    fromAmount: 325.5,
+    toCurrency: "KRW",
+    toAmount: 454734,
+    appliedRate: 1383.07,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 5,
+    fromCurrency: "USD",
+    fromAmount: 325.5,
+    toCurrency: "KRW",
+    toAmount: 454734,
+    appliedRate: 942.56,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 4,
+    fromCurrency: "USD",
+    fromAmount: 325.5,
+    toCurrency: "KRW",
+    toAmount: 454734,
+    appliedRate: 942.56,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 3,
+    fromCurrency: "KRW",
+    fromAmount: 41698,
+    toCurrency: "USD",
+    toAmount: 30.0,
+    appliedRate: 942.56,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 2,
+    fromCurrency: "KRW",
+    fromAmount: 41698,
+    toCurrency: "USD",
+    toAmount: 30.0,
+    appliedRate: 1383.07,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+  {
+    orderId: 1,
+    fromCurrency: "USD",
+    fromAmount: 325.5,
+    toCurrency: "KRW",
+    toAmount: 454734,
+    appliedRate: 1383.07,
+    orderedAt: "2025-10-05T00:00:00",
+  },
+];
