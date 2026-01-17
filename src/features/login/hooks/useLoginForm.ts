@@ -16,7 +16,7 @@ const useLoginForm = () => {
   const navigate = useNavigate();
 
   const { mutate: login, isPending: isLoginPending } = useMutation({
-    ...login_query_option.login,
+    ...login_query_option.login(),
   });
 
   const onSubmit = (data: LoginFormData) => {

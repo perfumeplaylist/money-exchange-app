@@ -1,5 +1,44 @@
+import { EstimateKrwForm } from "@/features/exchange/estimate-krw";
+import SearchExchangeRateLatest from "@/features/exchange/search-orders/ui/SearchExchangeRateLatest";
+import SearchWallets from "@/features/wallets/ui/search-wallets";
+import { PageHeader } from "@/shared";
+import {
+  Flex
+} from "@packages/ui";
+import { Suspense } from "react";
+
+
+
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+
+  return (
+    <section className="w-full">
+      <PageHeader
+        title="환율 정보"
+        description="실시간 환율을 확인하고 간편하게 환전하세요."
+      />
+      <Flex gap="lg" align="stretch">
+        <Flex direction="column" gap="lg">
+          <Flex direction="column" gap="lg">
+            <Flex direction="row" gap="lg">
+              <Suspense fallback={<div>Loading...</div>}>
+                <SearchExchangeRateLatest currency="USD" />
+              </Suspense>
+              <Suspense fallback={<div>Loading...</div>}>
+                <SearchExchangeRateLatest currency="JPY" />
+              </Suspense>
+            </Flex>
+            <Suspense fallback={<div>Loading...</div>}>
+              <SearchWallets />
+            </Suspense>
+          </Flex>
+        </Flex>
+        <EstimateKrwForm />
+
+      </Flex>
+    </section>
+  );
 };
 
 export default HomePage;

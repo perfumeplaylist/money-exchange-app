@@ -6,7 +6,7 @@ const login_query_key = {
 };
 
 const login_query_option = {
-  login: mutationOptions({
+  login: ()=>mutationOptions({
     mutationKey: login_query_key.login(),
     mutationFn: loginApi,
   }),

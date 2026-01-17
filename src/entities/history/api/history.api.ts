@@ -12,12 +12,10 @@ export type HistoryItem = {
   orderedAt: string;
 };
 
-type GetHistoryResponse = {
-  data: HistoryItem[];
-};
+
 
 export const getHistoryApi = () => {
   const url = "/orders";
 
-  return httpClient.get<GetHistoryResponse>(url);
+  return httpClient.get<HistoryItem[]>(url);
 };
