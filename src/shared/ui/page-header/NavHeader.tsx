@@ -50,12 +50,14 @@ const NavHeader = () => {
       className="border-b border-[#D0D6DB] pt-4 pr-10 pb-4 pl-10 w-full"
     >
       {/* 왼쪽: 로고 */}
-      <Flex align="center" className="gap-2">
-        <Rss size={24} className="text-primary" strokeWidth={2} />
-        <Text variant="heading_lg" className="text-text-primary" as="h1">
-          Exchange app
-        </Text>
-      </Flex>
+      <Link to="/home">
+        <Flex align="center" className="gap-2">
+          <Rss size={24} className="text-primary" strokeWidth={2} />
+          <Text variant="heading_lg" className="text-text-primary" as="h1">
+            Exchange app
+          </Text>
+        </Flex>
+      </Link>
 
       {/* 오른쪽: 네비게이션 + 로그아웃 */}
       <Flex align="center" className="gap-10">
@@ -67,7 +69,7 @@ const NavHeader = () => {
             currentPath={location.pathname}
           />
         ))}
-        <Button variant="default" size="sm" onClick={handleLogout}>
+        <Button variant="logout" onClick={handleLogout}>
           Log out
         </Button>
       </Flex>

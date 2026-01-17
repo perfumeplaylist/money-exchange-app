@@ -8,6 +8,7 @@ import {
 import {
   storage_key,
   getLocalStorage,
+  removeLocalStorage,
   type HttpResponse,
   type ApiErrorResponse,
   AxiosClient,
@@ -40,6 +41,7 @@ export class HttpClient extends AxiosClient {
         }
 
         const token = getLocalStorage(storage_key.auth_token);
+
         if (token) {
           config.headers["Authorization"] = `Bearer ${token}`;
         }
@@ -79,6 +81,15 @@ export class HttpClient extends AxiosClient {
             errorResponse as ApiErrorResponse,
             statusCode
           );
+
+          if (domainError.code === "UNAUTHORIZED") {
+            // 토큰이 없으면 토큰 제거하고 로그인 페이지로 리다이렉션
+            removeLocalStorage(storage_key.auth_token);
+            if (typeof window !== "undefined") {
+              window.location.href = "/login";
+            }
+          }
+
           return Promise.reject(domainError);
         }
 
