@@ -22,6 +22,7 @@ export { PageHeader, NavHeader } from "./ui/page-header";
 
 // Types
 export type { HttpResponse } from "./utils/types";
+export type { CurrencyCode } from "./types/currents";
 
 // Utilities
 export {

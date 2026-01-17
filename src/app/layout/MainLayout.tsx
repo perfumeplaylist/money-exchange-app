@@ -8,12 +8,12 @@ export const MainLayout = () => {
     <Flex
       direction="column"
       gap="lg"
-      className="min-h-screen bg-background-page"
+      className="min-h-screen bg-background"
     >
       <NavHeader />
 
       {/* 자식 라우트가 렌더링되는 위치 */}
-      <main className="w-full pt-[40px] px-[80px]">
+      <main className="w-full pt-[40px] px-[80px] pb-[50px]">
         <Outlet />
       </main>
     </Flex>
