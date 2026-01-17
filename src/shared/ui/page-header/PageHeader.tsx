@@ -8,8 +8,12 @@ type PageHeaderProps = {
 
 export const PageHeader = ({ title, description }: PageHeaderProps) => {
   return (
-    <Flex direction="column" gap="none" className="gap-[10px] pb-4">
-      <Text as="h1" className="font-bold text-[40px] text-text-primary">
+    <Flex direction="column" gap="xxs" className="pb-4">
+      <Text
+        as="h1"
+        variant="heading_xxl"
+        className="text-[#28323C] text-[40px]"
+      >
         {title}
       </Text>
       {description && (
