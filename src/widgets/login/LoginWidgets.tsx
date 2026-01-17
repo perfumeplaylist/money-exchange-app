@@ -6,7 +6,7 @@ const LoginWidgets = () => {
   return (
     <>
       <Flex direction="column" align="center" gap="xl" className="w-full">
-        <Rss size={80} className="text-primary" strokeWidth={2} />
+        <Rss size={80} className="text-button-logout-bg" strokeWidth={2} />
 
         <Flex direction="column" align="center" gap="sm">
           <Text variant="heading_xxl" align="center" className="text-5xl">

@@ -4,34 +4,21 @@
   /* ============================================
      Colors - Background
      ============================================ */
-  --color-background-page: #f8f9fa; /* Main page background */
   --color-background: #ffffff; /* Card/container background */
   --color-background-form: #f7f8f9; /* Form background */
-  --color-background-selection: rgba(
-    0,
-    0,
-    0,
-    0.05
-  ); /* Selected state background */
 
   /* ============================================
      Colors - Primary & Accent
      ============================================ */
-  --color-primary: #3366ff; /* Primary blue (login icon) */
-  --color-primary-alt: #1890ff; /* Alternative primary blue */
   --color-accent: #0d6efd; /* Accent blue (buttons, links, total assets) */
-  --color-accent-dark: #2c3e50; /* Dark blue (exchange button) */
-  --color-accent-dark-alt: #1f2d3d; /* Alternative dark blue */
 
   /* ============================================
      Colors - Text
      ============================================ */
   --color-text-primary: #212529; /* Main text color (headings, body) */
-  --color-text-primary-alt: #222222; /* Alternative primary text */
   --color-text-primary-link-hover: #36414c; /* Link text hover */
   --color-text-primary-link: #8899aa; /* Link text */
   --color-text-secondary: #6c757d; /* Secondary text (descriptions, labels) */
-  --color-text-secondary-alt: #555555; /* Alternative secondary text */
   --color-text-tertiary: #666666; /* Tertiary text */
   --color-text-placeholder: #6c757d; /* Input placeholder text */
   --color-text-inverse: #ffffff; /* White text on dark backgrounds */
@@ -66,9 +53,6 @@
   --color-border-default: #dee2e6; /* Default border color */
   --color-border-light: #e0e0e0; /* Light border (cards) */
   --color-border-input: #d9d9d9; /* Input field border */
-  --color-border-input-alt: #cccccc; /* Alternative input border */
-  --color-border-table: #eeeeee; /* Table border */
-  --color-border-table-light: #f5f5f5; /* Light table border */
   --color-border-gray-200: #e5e7eb; /* Gray-200 border color */
   --color-border-wallet: #D0D6DB; /* Wallet card border */
 
@@ -89,13 +73,6 @@
   --font-size-md: 1rem; /* 16px - Body text, navigation, labels, buttons */
   --font-size-sm: 0.875rem; /* 14px - Percentage change, small text */
   --font-size-xs: 0.75rem; /* 12px - Extra small text */
-
-  /* Legacy font size tokens (for backward compatibility) */
-  --font-size-title: var(--font-size-xxl);
-  --font-size-subtitle: var(--font-size-md);
-  --font-size-label: var(--font-size-sm);
-  --font-size-body: var(--font-size-md);
-  --font-size-button: var(--font-size-md);
 
   /* ============================================
      Typography - Font Weights
@@ -123,27 +100,14 @@
   --radius-sm: 4px; /* Buttons, inputs */
   --radius-md: 6px; /* Alternative buttons, inputs */
   --radius-lg: 8px; /* Cards, containers */
-  --radius-xl: 10px; /* Large containers */
   --radius-xxl: 12px; /* Form containers */
   --radius-wallet: 12px; /* Wallet card border radius */
-  --radius-table: 16px; /* Table border radius */
 
   /* ============================================
      Shadows
      ============================================ */
-  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1); /* Card shadow */
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1); /* Card shadow (alias) */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1); /* Card shadow */
   --shadow-form: 0 2px 8px rgba(0, 0, 0, 0.08); /* Form container shadow */
-
-  /* ============================================
-     Borders
-     ============================================ */
-  --border-width-thin: 1px;
-  --border-width-medium: 2px;
-  --border-style-solid: solid;
-  --border-color-default: var(--color-border-default);
-  --border-color-input: var(--color-border-input);
-  --border-color-table: var(--color-border-table);
 
   /* ============================================
      Component Heights
@@ -151,7 +115,6 @@
   --height-header: 64px; /* Header height */
   --height-button: 48px; /* Button height */
   --height-input: 48px; /* Input field height */
-  --height-table-cell: 49px; /* Table cell height */
 
   /* ============================================
      Component Padding
@@ -159,22 +122,7 @@
      
   --padding-card: 1.5rem; /* 24px - Card internal padding */
   --padding-card-lg: 2rem; /* 32px - Card internal padding */
-  --padding-header-vertical: 1rem; /* 16px - Header vertical padding */
-  --padding-header-horizontal: 1.5rem; /* 24px - Header horizontal padding */
-  --padding-table-cell-vertical: 0.75rem; /* 12px - Table cell vertical padding */
-  --padding-table-cell-horizontal: 1rem; /* 16px - Table cell horizontal padding */
-  --padding-table-container-vertical: 1rem; /* 16px - Table container vertical padding */
-  --padding-table-header-horizontal: 1.5rem; /* 24px - Table header horizontal padding */
   --padding-wallet: 24px 32px; /* 24px vertical, 32px horizontal - Wallet card padding */
-
-  /* ============================================
-     Table Column Widths
-     ============================================ */
-  --width-table-order-id: 263px; /* 거래 ID */
-  --width-table-ordered-at: 180px; /* 거래 일시 */
-  --width-table-from-amount: 263px; /* 매수 금액 */
-  --width-table-applied-rate: 263px; /* 체결 환율 */
-  --width-table-to-amount: 263px; /* 매도 금액 */
 
   /* ============================================
      Aliases for component class names
@@ -196,6 +144,11 @@
   --text-decrease: var(--color-decrease);
   --text-accent: var(--color-accent);
 
+  /* Background colors - for bg-background, bg-button-logout-bg, etc. */
+  --bg-background: var(--color-background);
+  --bg-background-form: var(--color-background-form);
+  --bg-button-logout-bg: var(--color-button-logout-bg);
+
   /* Border colors - for border-border-light, border-border-default, etc. */
   --border-border-light: var(--color-border-light);
   --border-border-default: var(--color-border-default);
@@ -207,10 +160,8 @@
   --radius-radius-sm: var(--radius-sm);
   --radius-radius-md: var(--radius-md);
   --radius-radius-lg: var(--radius-lg);
-  --radius-radius-xl: var(--radius-xl);
   --radius-radius-xxl: var(--radius-xxl);
   --radius-radius-wallet: var(--radius-wallet);
-  --radius-radius-table: var(--radius-table);
 
   /* Spacing - for gap-spacing-xs, gap-spacing-sm, etc. */
   --spacing-spacing-xs: var(--spacing-xs);
@@ -226,11 +177,15 @@
 
   /* Padding - for p-padding-card */
   --padding-padding-card: var(--padding-card);
+  --padding-padding-card-lg: var(--padding-card-lg);
   --padding-padding-form: 24px 32px;
   --padding-padding-wallet: var(--padding-wallet);
+  
+  /* Padding X/Y - for px-padding-card-lg, py-padding-card-lg */
+  --padding-x-padding-card-lg: var(--padding-card-lg);
+  --padding-y-padding-card-lg: var(--padding-card-lg);
 
   /* Heights - for h-height-button, h-height-input */
   --height-height-button: var(--height-button);
   --height-height-input: var(--height-input);
-  --height-height-table-cell: var(--height-table-cell);
 }

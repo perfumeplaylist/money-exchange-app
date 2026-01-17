@@ -18,13 +18,10 @@ const inputVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-9 px-3 text-[length:var(--font-size-sm)]",
         md: "h-height-input px-4 text-[length:var(--font-size-md)]",
-        lg: "h-12 px-4 text-[length:var(--font-size-lg)]",
       },
       variant: {
         default: "",
-        result: "h-[75px] bg-[#F7F8FA] border-border-default text-right",
       },
       error: {
         true: "border-error",

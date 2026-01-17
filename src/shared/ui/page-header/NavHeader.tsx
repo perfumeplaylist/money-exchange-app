@@ -24,7 +24,7 @@ const NavLink = ({ path, label, currentPath }: NavLinkProps) => {
     <Link to={path}>
       <Text
         variant={isActive ? "link_strong" : "link_lg"}
-        color={isActive ? "link_hover" : "link"}
+        color={isActive ? "primary" : "secondary"}
         className="transition-colors cursor-pointer "
       >
         {label}
@@ -52,7 +52,7 @@ const NavHeader = () => {
       {/* 왼쪽: 로고 */}
       <Link to="/home">
         <Flex align="center" className="gap-2">
-          <Rss size={24} className="text-primary" strokeWidth={2} />
+          <Rss size={24} className="text-button-logout-bg" strokeWidth={2} />
           <Text variant="heading_lg" className="text-text-primary" as="h1">
             Exchange app
           </Text>
