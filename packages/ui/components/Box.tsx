@@ -20,7 +20,7 @@ const boxVariants = cva("", {
       card: "bg-background border border-border-light rounded-radius-lg shadow-shadow-card p-padding-card",
       container: "bg-background border border-border-default rounded-radius-lg",
       panel: "bg-background border border-border-light rounded-radius-md",
-      form: "bg-background-form border border-border-input rounded-radius-lg shadow-shadow-form p-padding-card",
+      form: "bg-background-form border border-border-input rounded-radius-lg shadow-shadow-form p-padding-form",
       outline: "border border-border-default rounded-radius-sm",
       none: "",
     },

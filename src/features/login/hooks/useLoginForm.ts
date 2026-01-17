@@ -9,12 +9,13 @@ import useLocalStorage from "@/shared/hooks/useLocalStorage";
 const useLoginForm = () => {
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    mode: "onChange",
   });
   const [, setToken] = useLocalStorage<string>("token", "");
 
   const navigate = useNavigate();
 
-  const { mutate: login } = useMutation({
+  const { mutate: login, isPending: isLoginPending } = useMutation({
     ...login_query_option.login,
   });
 
@@ -26,11 +27,14 @@ const useLoginForm = () => {
           setToken(data.data.token);
           navigate("/home");
         },
+        onError: (error) => {
+          form.setError("email", { message: error.message });
+        },
       }
     );
   };
 
-  return { form, onSubmit };
+  return { form, onSubmit, isLoginPending };
 };
 
 export default useLoginForm;

@@ -189,6 +189,7 @@
 
   /* Padding - for p-padding-card */
   --padding-padding-card: var(--padding-card);
+  --padding-padding-form: 24px 32px;
 
   /* Heights - for h-height-button, h-height-input */
   --height-height-button: var(--height-button);
