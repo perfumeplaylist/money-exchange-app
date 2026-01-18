@@ -1,0 +1,211 @@
+---
+alwaysApply: true
+---
+
+# 📊 TanStack React Table 컨벤션 (CareUP · Tailwind 기반)
+
+> 본 컨벤션은 **TanStack React Table + Tailwind CSS** 조합을 기준으로 한다.  
+> 스타일은 `style.ts / styled-components`를 사용하지 않으며, **Tailwind class 기반**으로 통일한다.
+
+---
+
+## 1. 기본 철학 (Principles)
+
+### 1.1 TanStack Table의 역할
+
+- TanStack Table은 **headless table engine**
+- ✅ 데이터 → row 모델 변환, 정렬/페이징 상태 관리만 담당
+- ❌ DOM 구조, 레이아웃, 스타일 책임 없음
+
+```ts
+useReactTable({
+  data,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+});
+```
+
+### 1.2 UI / 로직 / 스타일 분리
+
+| 영역           | 책임                             |
+| -------------- | -------------------------------- |
+| createColumns  | 컬럼 정의 + 비즈니스 로직        |
+| WorkerTable    | 테이블 구조 / 렌더링             |
+| Tailwind class | 스타일 표현                      |
+| utils          | 컬럼 ID, width 계산 등 순수 로직 |
+
+## 2. 파일 & 디렉토리 구조 규칙
+
+```
+WorkerTable/
+ ┣ WorkerTable.tsx        # 테이블 View 컴포넌트
+ ┣ columns.ts             # createColumns 팩토리
+ ┣ utils.ts               # getColumnId, width 계산
+```
+
+**Rules:**
+
+- ❌ Table 컴포넌트 내부에서 column 정의 금지
+- ❌ inline style 직접 계산 금지 (예외: CSS variable 주입)
+- ✅ 컬럼은 항상 createColumns()로 생성
+
+## 3. Columns 컨벤션
+
+### 3.1 컬럼 정의 규칙
+
+- 모든 컬럼은 고유한 column id 필수
+- header / cell 렌더링은 flexRender 기준
+- 컬럼은 순수 함수 형태 유지
+
+```ts
+createColumns({
+  badgeInfo,
+  companyType,
+  ...
+});
+```
+
+### 3.2 컬럼 내부 제한 사항
+
+**❌ 금지:**
+
+```ts
+useState();
+useEffect();
+```
+
+**✅ 허용:**
+
+- props 기반 조건 분기
+- 이벤트 핸들러 위임
+- UI 컴포넌트 조합
+
+## 4. 상태 관리 Rules
+
+### 4.1 Table 내부 상태 최소화
+
+```ts
+const sorting: SortingState = [];
+const rowSelection: RowSelectionState = {};
+```
+
+- sorting / pagination / selection은 외부 제어
+- 테이블은 stateless view 역할
+
+### 4.2 Selection 로직
+
+- rowSelection 기반 UI ❌
+- 도메인 기준(userId 등)으로 선택 여부 판단
+
+```ts
+const isSelected = selectWorkerList.some(
+  (d) => d.userId === row.original.userId
+);
+```
+
+## 5. 렌더링 규칙
+
+### 5.1 Table 구조 고정
+
+```tsx
+<table>
+  <thead />
+  <tbody />
+</table>
+```
+
+- header / body 구조는 항상 명시적으로 분리
+- placeholder header 반드시 체크
+
+```ts
+header.isPlaceholder ? null : ...
+```
+
+### 5.2 No Data 처리 규칙
+
+```tsx
+if (!workerList.length) {
+  return (
+    <tr>
+      <td colSpan={table.getAllColumns().length}>
+        <NoData />
+      </td>
+    </tr>
+  );
+}
+```
+
+**Rules:**
+
+- ❌ table 외부에서 NoData 분기 금지
+- ✅ table row 구조 유지
+- ✅ colSpan은 getAllColumns().length 사용
+
+## 6. Tailwind 스타일링 컨벤션
+
+### 6.1 className 작성 원칙
+
+- ❌ 조건부 class 로직 과도한 분기 금지
+- ✅ clsx / cn 유틸 사용
+
+```ts
+cn("px-4 py-3 text-sm", isSelected && "bg-blue-50");
+```
+
+### 6.2 Width / Layout 처리
+
+- 컬럼 width는 CSS variable 기반
+- Tailwind는 variable 소비 역할만 수행
+
+```tsx
+<div className="w-[var(--col-width)]" style={{ "--col-width": `${width}px` }} />
+```
+
+## 7. 성능 최적화 컨벤션
+
+### 7.1 memo / useMemo 사용 기준
+
+| 대상             | 이유                    |
+| ---------------- | ----------------------- |
+| WorkerTable      | 테이블 전체 리렌더 방지 |
+| columns          | 컬럼 재생성 방지        |
+| TableBodyContent | row 렌더링 비용 감소    |
+
+```ts
+export default memo(WorkerTable);
+```
+
+### 7.2 useMemo 의존성 관리
+
+- ❌ 객체/함수 즉석 생성 금지
+- ✅ 실제 변경되는 값만 명시
+
+```ts
+[workerList.length, table, selectWorkerList, columnWidths, t];
+```
+
+## 8. 금지 사항 (Anti-pattern)
+
+**❌ Table 컴포넌트에서:**
+
+- 컬럼 정의
+- API 호출
+- 비즈니스 계산 로직
+- 도메인 상태 관리
+
+**❌ TanStack 상태를 source of truth로 사용**
+
+**❌ columnDef 안에서 직접 스타일 로직 계산**
+
+## 9. 이 컨벤션의 의도
+
+- ✅ 테이블 구조 표준화
+- ✅ 컬럼 교체만으로 재사용 가능
+- ✅ Tailwind 기반 디자인 시스템과 자연스럽게 결합
+- ✅ 서버 중심 상태 관리에 안전
+
+## 10. 한 줄 요약
+
+> TanStack Table은 엔진,  
+> 테이블은 View,  
+> Tailwind는 표현 계층이다
