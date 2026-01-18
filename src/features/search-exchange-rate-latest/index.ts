@@ -1,5 +1,5 @@
 export * from "./ui/search-exchange-rate-latest";
-export { default as SearchExchangeRateLatestSkeleton } from "./ui/SearchExchangeRateLatestSkeleton";
+export { default as SearchExchangeRateLatestSkeleton } from "./ui/search-exchange-rate-latest-skeleton";
 export * from "./ui/exchange-rate-header";
 export * from "./ui/exchange-rate-display";
 export * from "./ui/exchange-rate-change";
