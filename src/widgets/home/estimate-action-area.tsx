@@ -2,6 +2,7 @@ import { CreateOrderButton } from "@/features/exchange/create-order";
 import { Divider } from "@/shared";
 import { Flex, Text } from "@packages/ui";
 import { useEstimateKrw } from "@/features/exchange/estimate-krw";
+import { toast } from "sonner";
 
 type EstimateActionAreaProps = {
   estimate: ReturnType<typeof useEstimateKrw>;
@@ -10,6 +11,14 @@ type EstimateActionAreaProps = {
 const EstimateActionArea = ({ estimate }: EstimateActionAreaProps) => {
   const handleOrderSuccess = () => {
     estimate.form.resetField("amount", { defaultValue: 0 });
+    toast.success("환전 주문이 완료되었습니다", {
+      className: "bg-[#86efac] text-[#166534] border-[#4ade80]",
+      style: {
+        backgroundColor: "#86efac",
+        color: "#166534",
+        borderColor: "#4ade80",
+      },
+    });
   };
 
   const handleOrderError = (error: Error) => {
