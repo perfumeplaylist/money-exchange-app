@@ -1,9 +1,9 @@
 import { Box, Flex } from "@packages/ui";
 import type { CurrencyCode } from "@/shared";
 import useSearchExchangeRateLatest from "../hooks/useSearchExchangeRateLatest";
-import ExchangeRateHeader from "./ExchangeRateHeader";
-import ExchangeRateDisplay from "./ExchangeRateDisplay";
-import ExchangeRateChange from "./ExchangeRateChange";
+import ExchangeRateHeader from "./exchange-rate-header";
+import ExchangeRateDisplay from "./exchange-rate-display";
+import ExchangeRateChange from "./exchange-rate-change";
 
 type SearchExchangeRateLatestProps = {
   currency: CurrencyCode;

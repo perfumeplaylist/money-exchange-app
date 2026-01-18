@@ -1,0 +1,1 @@
+export const TABLE_COLUMN_RIGHT_ALIGN_COLUMNS = ["fromAmount", "appliedRate", "toAmount"];

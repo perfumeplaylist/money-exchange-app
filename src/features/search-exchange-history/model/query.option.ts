@@ -1,4 +1,4 @@
-import { getHistoryApi } from "@/entities/history/api/history.api";
+import { getHistoryApi } from "@/entities/orders/api/history.api";
 import { queryOptions } from "@tanstack/react-query";
 
 export const history_query_key = {
@@ -6,7 +6,7 @@ export const history_query_key = {
 };
 
 export const history_query_option = {
-  getHistory:()=> queryOptions ({
+  getHistory: () => queryOptions({
     queryKey: history_query_key.getHistory(),
     queryFn: () => getHistoryApi(),
   }),

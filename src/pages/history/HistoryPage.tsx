@@ -1,5 +1,5 @@
 import { PageHeader } from "@/shared";
-import HistoryTable from "@/features/history/ui/HistoryTable/HistoryTable";
+import HistoryTable from "@/features/search-exchange-history/ui/history-table";
 
 const HistoryPage = () => {
 

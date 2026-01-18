@@ -1,5 +1,5 @@
 import { type ColumnDef } from "@tanstack/react-table";
-import type { HistoryItem } from "@/entities/history/api/history.api";
+import type { HistoryItem } from "@/entities/orders/model/types";
 import {
   OrderIdCell,
   OrderedAtCell,
@@ -7,7 +7,7 @@ import {
   AppliedRateCell,
   ToAmountCell,
 } from "./cells";
-import { columnWidth } from "@/features/history";
+import { columnWidth } from "@/features/search-exchange-history/model/column.width";
 
 export const createColumns = (): ColumnDef<HistoryItem>[] => {
   return [
