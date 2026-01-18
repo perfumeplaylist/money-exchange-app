@@ -1,9 +1,9 @@
 import { Component, type ReactNode, type ErrorInfo } from "react";
-import { DomainError, FallbackUI } from "@/shared";
+import { ApiError, DomainError, FallbackUI, WalletError } from "@/shared";
 
 interface SectionErrorBoundaryProps {
   children: ReactNode;
-  errorType: new (...args: any[]) => DomainError;
+  errorType: typeof DomainError | typeof ApiError | typeof WalletError;
 }
 
 interface SectionErrorBoundaryState {
