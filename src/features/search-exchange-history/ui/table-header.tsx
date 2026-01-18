@@ -1,13 +1,13 @@
 import { flexRender, type Table } from "@tanstack/react-table";
 import { getColumnIdFromHeader, getRightAlignColumns } from "../utils";
-import type { HistoryItem } from "@/entities";
+import type { GetOrdersResponse } from "@/entities";
 
-type TableHeaderProps<T extends HistoryItem> = {
+type TableHeaderProps<T extends GetOrdersResponse> = {
   table: Table<T>;
   columnWidths: Record<string, number>;
 }
 
-const TableHeader = ({ table, columnWidths }: TableHeaderProps<HistoryItem>) => {
+const TableHeader = ({ table, columnWidths }: TableHeaderProps<GetOrdersResponse>) => {
   const rightAlignColumns = getRightAlignColumns();
 
   return (

@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { flexRender, type Table } from "@tanstack/react-table";
 import { getColumnId } from "../utils";
-import type { HistoryItem } from "@/entities";
+import type { GetOrdersResponse } from "@/entities/orders/model/types";
 
 type TableBodyProps = {
-  table: Table<HistoryItem>;
-  historyData: HistoryItem[];
+  table: Table<GetOrdersResponse>;
+  historyData: GetOrdersResponse[];
   columnWidths: Record<string, number>;
 }
 

@@ -1,8 +1,6 @@
 import type { CurrencyCode } from "@/shared";
-import { httpClient } from "@/shared/utils/HttpClient";
 
-
-export type HistoryItem = {
+export type GetOrdersResponse = {
   orderId: number;
   fromCurrency: CurrencyCode;
   fromAmount: number;
@@ -10,12 +8,4 @@ export type HistoryItem = {
   toAmount: number;
   appliedRate: number;
   orderedAt: string;
-};
-
-
-
-export const getHistoryApi = () => {
-  const url = "/orders";
-
-  return httpClient.get<HistoryItem[]>(url);
 };

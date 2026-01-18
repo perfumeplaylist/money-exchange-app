@@ -1,5 +1,5 @@
 import { type ColumnDef } from "@tanstack/react-table";
-import type { HistoryItem } from "@/entities/orders/model/types";
+import type { GetOrdersResponse } from "@/entities/orders/model/types";
 import {
   OrderIdCell,
   OrderedAtCell,
@@ -9,7 +9,7 @@ import {
 } from "./cells";
 import { columnWidth } from "@/features/search-exchange-history/model/column.width";
 
-export const createColumns = (): ColumnDef<HistoryItem>[] => {
+export const createColumns = (): ColumnDef<GetOrdersResponse>[] => {
   return [
     {
       id: "orderId",

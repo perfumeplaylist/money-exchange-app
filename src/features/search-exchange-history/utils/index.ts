@@ -1,19 +1,19 @@
 import type { Column, Header, ColumnDef } from "@tanstack/react-table";
 import { columnWidth } from "../model/column.width";
-import type { HistoryItem } from "@/entities";
+import type { GetOrdersResponse } from "@/entities/orders/model/types";
 import { TABLE_COLUMN_RIGHT_ALIGN_COLUMNS } from "../model/constant";
 
 /**
  * Column에서 ID 추출
  */
-export const getColumnId = (column: Column<HistoryItem, unknown>): string => {
+export const getColumnId = (column: Column<GetOrdersResponse, unknown>): string => {
   return column.id;
 };
 
 /**
  * Header에서 Column ID 추출
  */
-export const getColumnIdFromHeader = (header: Header<HistoryItem, unknown>): string => {
+export const getColumnIdFromHeader = (header: Header<GetOrdersResponse, unknown>): string => {
   return header.column.id;
 };
 
@@ -21,7 +21,7 @@ export const getColumnIdFromHeader = (header: Header<HistoryItem, unknown>): str
  * Column Widths 계산 및 CSS Variables 생성
  * column.width.ts를 활용하여 width 계산
  */
-export const calculateColumnWidths = (columns: ColumnDef<HistoryItem>[]) => {
+export const calculateColumnWidths = (columns: ColumnDef<GetOrdersResponse>[]) => {
   const columnWidths: Record<string, number> = {};
   const cssVariables: Record<string, string> = {};
 

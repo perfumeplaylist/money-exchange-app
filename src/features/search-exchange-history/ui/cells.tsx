@@ -1,25 +1,6 @@
 import { formatDateTime } from "@/shared";
 import { Text } from "@packages/ui/components";
-
-/**
- * 숫자에 천 단위 구분 기호 추가
- */
-const formatNumber = (num: number): string => {
-  return num.toLocaleString("ko-KR", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-};
-
-/**
- * 환율 포맷팅 (소수점 2자리)
- */
-const formatRate = (rate: number): string => {
-  return rate.toLocaleString("ko-KR", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-};
+import { formatExchangeRate } from "@/entities/exchange";
 
 /**
  * 공통 Cell 래퍼 스타일
@@ -65,7 +46,7 @@ export const FromAmountCell = ({
   amount: number;
   currency: string;
 }) => {
-  const formatted = formatNumber(amount);
+  const formatted = formatExchangeRate(amount);
   return (
     <CellWrapper align="right">
       {formatted} {currency}
@@ -77,7 +58,7 @@ export const FromAmountCell = ({
  * 체결 환율 Cell
  */
 export const AppliedRateCell = ({ value }: { value: number }) => {
-  const formatted = formatRate(value);
+  const formatted = formatExchangeRate(value);
   return <CellWrapper align="right">{formatted}</CellWrapper>;
 };
 
@@ -91,7 +72,7 @@ export const ToAmountCell = ({
   amount: number;
   currency: string;
 }) => {
-  const formatted = formatNumber(amount);
+  const formatted = formatExchangeRate(amount);
   return (
     <CellWrapper align="right">
       {formatted} {currency}
