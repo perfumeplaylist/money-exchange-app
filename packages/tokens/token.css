@@ -52,7 +52,7 @@
      ============================================ */
   --color-border-default: #dee2e6; /* Default border color */
   --color-border-light: #e0e0e0; /* Light border (cards) */
-  --color-border-input: #d9d9d9; /* Input field border */
+  --color-border-input: #374553; /* Input field border */
   --color-border-gray-200: #e5e7eb; /* Gray-200 border color */
   --color-border-wallet: #D0D6DB; /* Wallet card border */
 
@@ -102,6 +102,7 @@
   --radius-lg: 8px; /* Cards, containers */
   --radius-xxl: 12px; /* Form containers */
   --radius-wallet: 12px; /* Wallet card border radius */
+  --radius-button-xl: 16px; /* Button xl radius */
 
   /* ============================================
      Shadows
@@ -114,7 +115,7 @@
      ============================================ */
   --height-header: 64px; /* Header height */
   --height-button: 48px; /* Button height */
-  --height-input: 48px; /* Input field height */
+  --height-input: 75px; /* Input field height */
 
   /* ============================================
      Component Padding

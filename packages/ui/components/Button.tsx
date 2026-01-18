@@ -28,6 +28,7 @@ const buttonVariants = cva(
           "bg-[var(--color-button-logout-bg)] text-[var(--color-button-logout-text)] hover:opacity-90 focus-visible:ring-[var(--color-button-logout-bg)] py-2 px-3 rounded-radius-xxl",
       },
       size: {
+        xl: "h-[77px] px-4 radius-button-xl text-[22px] font-weight-bold",
         md: "h-height-button px-4",
         lg: "h-12 px-6 text-[length:var(--font-size-lg)]",
       },

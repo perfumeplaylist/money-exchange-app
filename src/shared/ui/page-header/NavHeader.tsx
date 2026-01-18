@@ -53,7 +53,7 @@ const NavHeader = () => {
       <Link to="/home">
         <Flex align="center" className="gap-2">
           <Rss size={24} className="text-button-logout-bg" strokeWidth={2} />
-          <Text variant="heading_lg" className="text-text-primary" as="h1">
+          <Text variant="wallet_total_amount" className="text-text-primary" as="h1">
             Exchange app
           </Text>
         </Flex>

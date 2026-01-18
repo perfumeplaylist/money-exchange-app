@@ -96,197 +96,204 @@ const EstimateKrwForm = () => {
   const suffixText = `${currency === "USD" ? "달러" : "엔"} ${transactionType === "buy" ? "사기" : "팔기"}`;
 
   return (
-    <Box variant="form" className="w-full h-full min-h-[789px]">
+    <Box variant="form" className="w-full h-full border-border-wallet">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Flex direction="column" gap="lg">
-            {/* 통화 선택 헤더 */}
-            <FormField
-              control={form.control}
-              name="currency"
-              render={({ field }) => (
-                <FormItem>
-                  <Select
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  >
-                    <SelectTrigger className="w-full justify-between border-none shadow-none">
-                      <SelectValue>
-                        <Flex align="center" gap="sm">
-                          {selectedCurrency && (
-                            <selectedCurrency.flagIcon className="w-6 h-6 rounded-full" />
-                          )}
-                          <Text variant="rate_display" as="span">
-                            {selectedCurrency?.label} 환전하기
-                          </Text>
-                        </Flex>
-                      </SelectValue>
-                    </SelectTrigger>
-                    <SelectContent
-                      className="z-100 bg-background border border-border-default w-[140px] h-[104px] pt-2 pb-2 rounded-[10px]"
-                      position="popper"
-                      side="bottom"
-                      align="start"
-                      sideOffset={2}
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full h-full">
+          <Flex direction="column" justify="between" className="w-full h-full">
+            <Flex direction="column" gap="lg" className="w-full">
+
+              {/* 통화 선택 헤더 */}
+              <FormField
+                control={form.control}
+                name="currency"
+                render={({ field }) => (
+                  <FormItem>
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
                     >
-                      {CURRENCY_OPTIONS.map((option) => (
-                        <SelectItem
-                          key={option.value}
-                          value={option.value}
-                          className="font-medium leading-[150%] hover:bg-[#F7F8FA] focus:bg-[#F7F8FA] data-highlighted:bg-[#F7F8FA] data-[state=checked]:bg-[#F7F8FA]"
-                        >
+                      <SelectTrigger className="w-full justify-between border-none shadow-none">
+                        <SelectValue>
                           <Flex align="center" gap="sm">
-                            <option.flagIcon className="w-5 h-4 rounded-full" />
-                            <Text variant="body_md" className="font-medium leading-[150%]">
-                              {option.label}
+                            {selectedCurrency && (
+                              <selectedCurrency.flagIcon className="w-6 h-6 rounded-full" />
+                            )}
+                            <Text variant="rate_display" as="span">
+                              {selectedCurrency?.label} 환전하기
                             </Text>
                           </Flex>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormErrorMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* 매매 타입 토글 */}
-            <FormField
-              control={form.control}
-              name="transactionType"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <Tabs
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  >
-                    <TabsList className="rounded-[16px] border border-border-default bg-background h-[83px] p-3 w-full">
-                      <TabsTrigger
-                        value="buy"
-                        className={cn(
-                          "py-4 px-[18px] rounded-[12px] text-[#FFA7A7] font-semibold text-[length:var(--font-size-smxl)]",
-                          "data-[state=active]:bg-[#FE5050] data-[state=active]:text-white"
-                        )}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent
+                        className="z-100 bg-background border border-border-default w-[140px] h-[104px] pt-2 pb-2 rounded-[10px]"
+                        position="popper"
+                        side="bottom"
+                        align="start"
+                        sideOffset={2}
                       >
-                        살래요
-                      </TabsTrigger>
-                      <TabsTrigger
-                        value="sell"
-                        className={cn(
-                          "py-4 px-[18px] rounded-[12px] text-[#9DB6FF] font-semibold text-[length:var(--font-size-smxl)]",
-                          "data-[state=active]:bg-[#3479EB] data-[state=active]:text-white"
-                        )}
-                      >
-                        팔래요
-                      </TabsTrigger>
-                    </TabsList>
-                  </Tabs>
-                </FormItem>
-              )}
-            />
-
-            {/* 매수 금액 입력 */}
-            <FormField
-              control={form.control}
-              name="amount"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <Flex direction="column" gap="xs">
-                    <FormLabel>
-                      <Text variant="label" color="form_label">
-                        {transactionType === "buy" ? "매수 금액" : "매도 금액"}
-                      </Text>
-                    </FormLabel>
-                    <div className="relative w-full">
-                      <FormInput
-                        value={displayValue}
-                        onChange={(e) => {
-                          const numericValue = extractNumber(e.target.value);
-                          field.onChange(numericValue);
-                        }}
-                        placeholder="0"
-                        className="w-full h-[75px] text-right pr-20"
-                      />
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                        <Text variant="body_md" className="text-text-secondary">
-                          {suffixText}
-                        </Text>
-                      </div>
-                    </div>
-                  </Flex>
-                </FormItem>
-              )}
-            />
-
-            <div className="pointer-events-none w-9 h-9 rounded-full bg-background border border-border-default flex items-center justify-center mx-auto">
-              <ChevronDownIcon className="w-5 h-5 text-text-secondary" />
-            </div>
-
-
-            {/* 필요 원화 표시 */}
-            <Flex direction="column" gap="md" className="w-full">
-              <Text variant="label" color="form_label">
-                필요 원화
-              </Text>
-              <Box
-                variant="container"
-                className="w-full h-[75px] bg-[#F1F2F4] border border-border-default rounded-radius-sm flex items-center justify-end pr-4"
-              >
-                {isQuoteLoading && amount > 0 ? (
-                  <Text variant="body_md" className="text-text-secondary">
-                    계산 중...
-                  </Text>
-                ) : (
-                  <div>
-                    <span className="text-text-primary">{formattedRequiredKrw}</span>{" "}
-                    <span className="text-primary">{resultText}</span>
-                  </div>
+                        {CURRENCY_OPTIONS.map((option) => (
+                          <SelectItem
+                            key={option.value}
+                            value={option.value}
+                            className="font-medium leading-[150%] hover:bg-[#F7F8FA] focus:bg-[#F7F8FA] data-highlighted:bg-[#F7F8FA] data-[state=checked]:bg-[#F7F8FA]"
+                          >
+                            <Flex align="center" gap="sm">
+                              <option.flagIcon className="w-5 h-4 rounded-full" />
+                              <Text variant="body_md" className="font-medium leading-[150%]">
+                                {option.label}
+                              </Text>
+                            </Flex>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormErrorMessage />
+                  </FormItem>
                 )}
-              </Box>
+              />
+
+              {/* 매매 타입 토글 */}
+              <FormField
+                control={form.control}
+                name="transactionType"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <Tabs
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    >
+                      <TabsList className="rounded-[16px] border border-border-default bg-background h-[83px] p-3 w-full">
+                        <TabsTrigger
+                          value="buy"
+                          className={cn(
+                            "py-4 px-[18px] rounded-[12px] text-[#FFA7A7] font-semibold text-[length:var(--font-size-smxl)]",
+                            "data-[state=active]:bg-[#FE5050] data-[state=active]:text-white"
+                          )}
+                        >
+                          살래요
+                        </TabsTrigger>
+                        <TabsTrigger
+                          value="sell"
+                          className={cn(
+                            "py-4 px-[18px] rounded-[12px] text-[#9DB6FF] font-semibold text-[length:var(--font-size-smxl)]",
+                            "data-[state=active]:bg-[#3479EB] data-[state=active]:text-white"
+                          )}
+                        >
+                          팔래요
+                        </TabsTrigger>
+                      </TabsList>
+                    </Tabs>
+                  </FormItem>
+                )}
+              />
+
+              {/* 매수 금액 입력 */}
+              <FormField
+                control={form.control}
+                name="amount"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <Flex direction="column" gap="xs">
+                      <FormLabel>
+                        <Text variant="label" color="form_label">
+                          {transactionType === "buy" ? "매수 금액" : "매도 금액"}
+                        </Text>
+                      </FormLabel>
+                      <div className="relative w-full">
+                        <FormInput
+                          value={displayValue}
+                          onChange={(e) => {
+                            const numericValue = extractNumber(e.target.value);
+                            field.onChange(numericValue);
+                          }}
+                          placeholder="0"
+                          className="w-full h-[75px] text-right pr-20"
+                        />
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                          <Text variant="body_md" className="text-text-secondary">
+                            {suffixText}
+                          </Text>
+                        </div>
+                      </div>
+                    </Flex>
+                  </FormItem>
+                )}
+              />
+
+              <div className="pointer-events-none w-9 h-9 rounded-full bg-[#ACB4BB] border border-border-default flex items-center justify-center mx-auto">
+                <ChevronDownIcon className="w-5 h-5 text-white" />
+              </div>
+
+
+              {/* 필요 원화 표시 */}
+              <Flex direction="column" gap="md" className="w-full">
+                <Text variant="label" color="form_label">
+                  필요 원화
+                </Text>
+                <Box
+                  variant="container"
+                  className="w-full h-[75px] bg-[#F1F2F4] border border-border-default rounded-radius-sm flex items-center justify-end pr-4"
+                >
+                  {isQuoteLoading && amount > 0 ? (
+                    <Text variant="body_md" className="text-text-secondary">
+                      계산 중...
+                    </Text>
+                  ) : (
+                    <div>
+                      <span className="text-text-primary">{formattedRequiredKrw}</span>{" "}
+                      <span className="text-primary">{resultText}</span>
+                    </div>
+                  )}
+                </Box>
+              </Flex>
             </Flex>
 
 
-            <Divider />
-            {/* 적용 환율 표시 */}
-            {selectedExchangeRate && amount > 0 && (
-              <Flex justify="between" align="center" className="w-full">
-                <Text variant="wallet_label" color="form_label">
-                  적용 환율
+
+            <Flex direction="column" gap="lg" className="w-full">
+
+              <Divider />
+              {/* 적용 환율 표시 */}
+              {selectedExchangeRate && amount > 0 && (
+                <Flex justify="between" align="center" className="w-full">
+                  <Text variant="wallet_label" color="form_label">
+                    적용 환율
+                  </Text>
+                  {isQuoteLoading ? (
+                    <Text variant="wallet_amount" as="p" className="text-text-secondary">
+                      계산 중...
+                    </Text>
+                  ) : (
+                    <Text variant="wallet_amount" as="p">
+                      1 {currency} = {formattedRate} 원
+                    </Text>
+                  )}
+                </Flex>
+              )}
+
+              {/* 에러 메시지 */}
+              {form.formState.errors.root && (
+                <Text variant="body_sm" color="error" className="text-center">
+                  {form.formState.errors.root.message}
                 </Text>
-                {isQuoteLoading ? (
-                  <Text variant="wallet_amount" as="p" className="text-text-secondary">
-                    계산 중...
-                  </Text>
-                ) : (
-                  <Text variant="wallet_amount" as="p">
-                    1 {currency} = {formattedRate} 원
-                  </Text>
-                )}
-              </Flex>
-            )}
+              )}
 
-            {/* 에러 메시지 */}
-            {form.formState.errors.root && (
-              <Text variant="body_sm" color="error" className="text-center">
-                {form.formState.errors.root.message}
-              </Text>
-            )}
-
-            {/* 환전하기 버튼 */}
-            <Button
-              type="submit"
-              variant="primary"
-              size="lg"
-              className="w-full"
-              disabled={
-                !form.formState.isValid ||
-                amount <= 0 ||
-                isOrderPending ||
-                isQuoteLoading
-              }
-            >
-              {isOrderPending ? "처리 중..." : "환전하기"}
-            </Button>
+              {/* 환전하기 버튼 */}
+              <Button
+                type="submit"
+                variant="default"
+                size="xl"
+                className="w-full"
+                disabled={
+                  !form.formState.isValid ||
+                  amount <= 0 ||
+                  isOrderPending ||
+                  isQuoteLoading
+                }
+              >
+                {isOrderPending ? "처리 중..." : "환전하기"}
+              </Button>
+            </Flex>
           </Flex>
         </form>
       </Form>

@@ -42,7 +42,7 @@ const LoginForm = () => {
           <Button
             type="submit"
             variant="default"
-            size="md"
+            size="xl"
             className="w-full"
             disabled={!form.formState.isValid || isLoginPending}
           >
