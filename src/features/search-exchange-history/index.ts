@@ -1,4 +1,3 @@
-export * from "./ui/history-table";
 export { default as TableHeader } from "./ui/table-header";
 export { default as TableBody } from "./ui/table-body";
 export * from "./ui/columns";

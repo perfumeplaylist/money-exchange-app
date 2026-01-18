@@ -2,26 +2,12 @@ import { useForm } from "react-hook-form";
 import { estimateQuoteSchema, type EstimateQuoteFormData } from "../model/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSuspenseQuery, useQuery } from "@tanstack/react-query";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo } from "react";
+import { useDebouncedValue } from "@/shared";
 import { estimate_quote_query_option } from "../model/query.option";
 import type { ResponseExchangeRate } from "@/entities/exchange";
 
-// Debounce 훅
-const useDebouncedValue = <T,>(value: T, delay: number = 500): T => {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
-};
 
 const useEstimateQuote = () => {
 

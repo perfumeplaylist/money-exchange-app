@@ -2,7 +2,7 @@ import { Flex, Text, Box } from "@packages/ui";
 import { formatAmountDisplay, formatExchangeRate } from "@/entities/exchange";
 import type { CurrencyCode } from "@/shared";
 
-interface QuoteResultProps {
+type QuoteResultProps = {
   requiredKrw: number;
   appliedRate: number;
   currency: CurrencyCode;
@@ -44,8 +44,8 @@ const QuoteResult = ({
             </Text>
           ) : (
             <div>
-              <span className="text-text-primary">{formattedRequiredKrw}</span>{" "}
-              <span className="text-primary">{resultText}</span>
+              <Text variant="body_md" color="primary" as="span">{formattedRequiredKrw}</Text>{" "}
+              <Text variant="body_md" color="primary" as="span">{resultText}</Text>
             </div>
           )}
         </Box>
