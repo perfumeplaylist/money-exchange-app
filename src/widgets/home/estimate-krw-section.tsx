@@ -2,13 +2,13 @@ import { useEstimateKrw } from "@/features/exchange/estimate-krw";
 import { Box, Flex, Form } from "@packages/ui";
 import EstimateFormArea from "./estimate-form-area";
 import EstimateActionArea from "./estimate-action-area";
-import { SectionErrorBoundary, WalletError } from "@/shared";
+import { SectionErrorBoundary, ApiError } from "@/shared";
 
 const EstimateKrwSection = () => {
   const estimate = useEstimateKrw();
 
   return (
-    <SectionErrorBoundary errorType={WalletError}>
+    <SectionErrorBoundary errorType={ApiError}>
       <section className="flex-1">
         <Box variant="form" className="w-full h-full border-border-wallet">
           <Form {...estimate.form}>

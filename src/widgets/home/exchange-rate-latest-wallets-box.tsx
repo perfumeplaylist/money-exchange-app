@@ -1,6 +1,6 @@
 import { SearchExchangeRateLatest, SearchExchangeRateLatestSkeleton } from "@/features/search-exchange-rate-latest";
 import { SearchWalletsBox, SearchWalletsBoxSkeleton } from "@/features/search-wallets";
-import { SectionErrorBoundary, CurrencyError, WalletError } from "@/shared";
+import { SectionErrorBoundary, ApiError } from "@/shared";
 import { Flex } from "@packages/ui";
 import { Suspense } from "react";
 
@@ -9,18 +9,18 @@ const ExchangeRateLatestWalletsBox = () => {
     <Flex direction="column" gap="lg">
       <Flex direction="column" gap="lg">
         <Flex direction="row" gap="lg">
-          <SectionErrorBoundary errorType={CurrencyError}>
+          <SectionErrorBoundary errorType={ApiError}>
             <Suspense fallback={<SearchExchangeRateLatestSkeleton />}>
               <SearchExchangeRateLatest currency="USD" />
             </Suspense>
           </SectionErrorBoundary>
-          <SectionErrorBoundary errorType={CurrencyError}>
+          <SectionErrorBoundary errorType={ApiError}>
             <Suspense fallback={<SearchExchangeRateLatestSkeleton />}>
               <SearchExchangeRateLatest currency="JPY" />
             </Suspense>
           </SectionErrorBoundary>
         </Flex>
-        <SectionErrorBoundary errorType={WalletError}>
+        <SectionErrorBoundary errorType={ApiError}>
           <Suspense fallback={<SearchWalletsBoxSkeleton />}>
             <SearchWalletsBox />
           </Suspense>
