@@ -1,7 +1,12 @@
+import { GlobalErrorBoundary } from "@/shared";
 import Provider from "./provider/Provider";
 
 const App = () => {
-  return <Provider />;
+  return (
+    <GlobalErrorBoundary>
+      <Provider />
+    </GlobalErrorBoundary>
+  );
 };
 
 export default App;

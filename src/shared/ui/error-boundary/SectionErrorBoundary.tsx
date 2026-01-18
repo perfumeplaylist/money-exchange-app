@@ -3,7 +3,7 @@ import { DomainError, FallbackUI } from "@/shared";
 
 interface SectionErrorBoundaryProps {
   children: ReactNode;
-  errorType: typeof DomainError;
+  errorType: new (...args: any[]) => DomainError;
 }
 
 interface SectionErrorBoundaryState {
