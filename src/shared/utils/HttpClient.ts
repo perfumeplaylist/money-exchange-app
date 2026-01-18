@@ -14,6 +14,7 @@ import {
   AxiosClient,
   toDomainError,
 } from "@/shared";
+import { API_ERROR_CODE } from "@/shared/constants/error";
 /**
  * HttpClient
  * AxiosClient를 상속하며 기본 인터셉터를 제공합니다.
@@ -82,7 +83,7 @@ export class HttpClient extends AxiosClient {
             statusCode
           );
 
-          if (domainError.code === "UNAUTHORIZED") {
+          if (domainError.code === API_ERROR_CODE.UNAUTHORIZED) {
             // 토큰이 없으면 토큰 제거하고 로그인 페이지로 리다이렉션
             removeLocalStorage(storage_key.auth_token);
             if (typeof window !== "undefined") {

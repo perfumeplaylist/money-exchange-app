@@ -7,6 +7,11 @@ import type {
   CurrencyErrorCode,
   ApiErrorResponse,
 } from '../errors/types';
+import {
+  API_ERROR_CODE,
+  WALLET_ERROR_CODE,
+  CURRENCY_ERROR_CODE,
+} from '../constants/error';
 
 /**
  * HTTP 에러 응답을 도메인 에러로 변환합니다.
@@ -23,38 +28,21 @@ export function toDomainError(
   const { code, message } = response;
 
   // API 공통 에러 코드 매핑
-  const apiErrorCodes: ApiErrorCode[] = [
-    'BAD_REQUEST',
-    'NOT_FOUND',
-    'UNAUTHORIZED',
-    'VALIDATION_ERROR',
-    'MISSING_PARAMETER',
-  ];
+  const apiErrorCodes: ApiErrorCode[] = Object.values(API_ERROR_CODE) as ApiErrorCode[];
 
   if (apiErrorCodes.includes(code as ApiErrorCode)) {
     return new ApiError(code as ApiErrorCode, message, statusCode);
   }
 
   // Wallet/Exchange 도메인 에러 코드 매핑
-  const walletErrorCodes: WalletErrorCode[] = [
-    'WALLET_INSUFFICIENT_BALANCE',
-    'INVALID_DEPOSIT_AMOUNT',
-    'INVALID_WITHDRAW_AMOUNT',
-  ];
+  const walletErrorCodes: WalletErrorCode[] = Object.values(WALLET_ERROR_CODE) as WalletErrorCode[];
 
   if (walletErrorCodes.includes(code as WalletErrorCode)) {
     return new WalletError(code as WalletErrorCode, message, statusCode);
   }
 
   // Currency/Exchange 정책 에러 코드 매핑
-  const currencyErrorCodes: CurrencyErrorCode[] = [
-    'CURRENCY_MISMATCH',
-    'INVALID_AMOUNT_SCALE',
-    'EXCHANGE_RATE_CURRENCY_MISMATCH',
-    'UNSUPPORTED_FOREX_CONVERSION_CURRENCY',
-    'INVALID_EXCHANGE_RATE_CURRENCY',
-    'UNSUPPORTED_CURRENCY_FOR_KRW_CONVERSION',
-  ];
+  const currencyErrorCodes: CurrencyErrorCode[] = Object.values(CURRENCY_ERROR_CODE) as CurrencyErrorCode[];
 
   if (currencyErrorCodes.includes(code as CurrencyErrorCode)) {
     return new CurrencyError(code as CurrencyErrorCode, message, statusCode);

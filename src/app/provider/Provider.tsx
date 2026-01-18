@@ -1,26 +1,11 @@
-import { QueryClientProvider } from "@tanstack/react-query";
-import { QueryClient } from "@tanstack/react-query";
 import { RouterProvider } from "react-router";
 import { router } from "../router/routes";
+import QueryClientProvider from "./QueryClientProvider";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      retry: false,
-      throwOnError: true,
-    },
-    mutations: {
-      retry: false,
-    },
-  },
-});
 
 const Provider = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider>
       <RouterProvider router={router} />
     </QueryClientProvider>
   );

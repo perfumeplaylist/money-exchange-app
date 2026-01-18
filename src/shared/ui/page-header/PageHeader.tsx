@@ -1,5 +1,4 @@
-import { Flex } from "@packages/ui/layout";
-import { Text } from "@packages/ui/components";
+import { Flex, Text } from "@packages/ui";
 
 type PageHeaderProps = {
   title: string;

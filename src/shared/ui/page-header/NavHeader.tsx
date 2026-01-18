@@ -1,10 +1,7 @@
 import { Rss } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { Flex } from "@packages/ui/layout";
-import { Text } from "@packages/ui/components";
-import { Button } from "@packages/ui/components";
-import { removeLocalStorage } from "@/shared/utils/storage";
-import { storage_key } from "@/shared/constants/storage";
+import { Flex, Button, Text } from "@packages/ui";
+import { removeLocalStorage, storage_key } from "@/shared";
 
 const NAV_ITEMS = [
   { path: "/home", label: "환전 하기" },
