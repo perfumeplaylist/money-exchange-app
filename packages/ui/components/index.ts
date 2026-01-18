@@ -4,4 +4,4 @@ export * from "./Text";
 export * from "./Select";
 export * from "./Form";
 export * from "./Tabs";
-export * from "./Form";
+export * from "./Toaster";
