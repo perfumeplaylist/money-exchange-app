@@ -2,10 +2,28 @@ import { useForm } from "react-hook-form";
 import { estimateKrwSchema, type EstimateKrwFormData } from "../model/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSuspenseQuery, useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useMemo } from "react";
-import exchange_rates_query_option from "@/features/exchange/search-orders/model/query.option";
+import { useMemo, useState, useEffect } from "react";
+import { exchange_rates_query_option, exchange_rates_query_key } from "@/features/exchange/search-orders/model/query.option";
 import type { ResponseExchangeRate } from "@/entities/exchange";
 import  { wallets_query_key } from "@/features/wallets/model/query.option";
+import { history_query_key } from "@/features/history/model/query.option";
+
+// Debounce 훅
+const useDebouncedValue = <T,>(value: T, delay: number = 500): T => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
 
 const useEstimateKrwForm = () => {
   const form = useForm<EstimateKrwFormData>({
@@ -23,6 +41,9 @@ const useEstimateKrwForm = () => {
   const currency = form.watch("currency");
   const amount = form.watch("amount");
 
+  // Debounced amount for API calls
+  const debouncedAmount = useDebouncedValue(amount, 500);
+
   // 환율 데이터 조회
   const { data: exchangeRates,refetch: refetchExchangeRates } = useSuspenseQuery({
     ...exchange_rates_query_option.getExchangeRatesLatest(),
@@ -37,14 +58,14 @@ const useEstimateKrwForm = () => {
     );
   }, [exchangeRates, currency]);
 
-  // 견적 조회 (API 호출)
+  // 견적 조회 (API 호출) - debounced amount 사용
   const { data: quoteData, isLoading: isQuoteLoading } = useQuery({
     ...exchange_rates_query_option.getExchangeRatesHistory({
       fromCurrency: currency,
       toCurrency: "KRW",
-      forexAmount: amount,
+      forexAmount: debouncedAmount,
     }),
-    enabled: amount > 0 && !!selectedExchangeRate,
+    enabled: debouncedAmount > 0 && !!selectedExchangeRate,
   });
 
   // 필요 원화 (API로부터 받은 데이터 사용)
@@ -105,16 +126,18 @@ const useEstimateKrwForm = () => {
         },
         {
           onSuccess: () => {
-            // 성공 처리
-            console.log("환전 주문 성공");
-            // TODO: 성공 메시지 표시 또는 페이지 이동
             queryClient.invalidateQueries({
               queryKey: wallets_query_key.getWallets(),
             });
             queryClient.invalidateQueries({
-              queryKey: exchange_rates_query_option.getExchangeRatesLatest().queryKey,
+              queryKey: exchange_rates_query_key.getExchangeRatesLatest(),
             });
-            form.reset();
+
+            queryClient.invalidateQueries({
+              queryKey: history_query_key.getHistory(),
+            });
+            // amount 필드만 리셋
+            form.resetField("amount", { defaultValue: 0 });
           },
           onError: (error) => {
             // 에러 처리

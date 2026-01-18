@@ -23,6 +23,8 @@ import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@packages/core";
 import useEstimateKrwForm from "../hooks/useEstimateKrwForm";
 import { Divider, type CurrencyCode } from "@/shared";
+import type { ControllerRenderProps } from "react-hook-form";
+import type { EstimateKrwFormData } from "../model/schema";
 
 const CURRENCY_OPTIONS: {
   value: CurrencyCode;
@@ -79,21 +81,80 @@ const EstimateKrwForm = () => {
   // 거래 유형에 따른 텍스트
   const resultText = transactionType === "buy" ? "원 필요해요" : "원 받을 수 있어요";
 
-  // 입력값에서 숫자만 추출하는 함수
-  const extractNumber = (inputValue: string): number => {
-    // 숫자와 소수점만 추출
-    const numericString = inputValue.match(/\d+\.?\d*/)?.[0] || "";
-    if (!numericString) return 0;
+  // 정규식 패턴: 정수 또는 소수점 2자리까지
+  const VALID_NUMBER_PATTERN = /^\d+(\.\d{0,2})?$/;
 
-    const parsed = parseFloat(numericString);
-    return isNaN(parsed) ? 0 : parsed;
+  // 천 단위 구분 기호가 포함된 값을 포맷팅
+  const formatDisplayValue = (num: number): string => {
+    if (num === 0) return '';
+    return num.toLocaleString('ko-KR', {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 0,
+    });
   };
 
-  // 입력 필드에 표시할 값: 항상 숫자만 표시
-  const displayValue = amount > 0 ? amount.toString() : "";
+  // 입력 필드에 표시할 값: 천 단위 구분 기호 포함
+  const displayValue = formatDisplayValue(amount);
 
   // 고정 텍스트 (통화 + 거래 유형)
   const suffixText = `${currency === "USD" ? "달러" : "엔"} ${transactionType === "buy" ? "사기" : "팔기"}`;
+
+  // 키보드 입력 필터링 (정규식 활용)
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // 제어 키 (복사, 붙여넣기, 선택 등)
+    const isControlKey = e.ctrlKey || e.metaKey;
+    const isAllowedControl = /^[acxv]$/i.test(e.key);
+
+    // 네비게이션 키
+    const isNavigationKey = /^(Backspace|Delete|Tab|Escape|Enter|Arrow(Left|Right|Up|Down)|Home|End)$/.test(e.key);
+
+    // 숫자 키
+    const isNumberKey = /^[0-9]$/.test(e.key);
+
+    // 소수점 키 (이미 소수점이 없을 때만)
+    const currentValue = e.currentTarget.value.replace(/,/g, '');
+    const isDecimalKey = e.key === '.' && !currentValue.includes('.');
+
+    // 허용되지 않는 키는 차단
+    if (!isNumberKey && !isDecimalKey && !isNavigationKey && !(isControlKey && isAllowedControl)) {
+      e.preventDefault();
+    }
+  };
+
+  // onChange 핸들러 (정규식으로 필터링)
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: ControllerRenderProps<EstimateKrwFormData, "amount">
+  ) => {
+    const inputValue = e.target.value.replace(/,/g, ''); // 콤마 제거
+
+    // 빈 문자열 허용
+    if (inputValue === '') {
+      field.onChange(0);
+      return;
+    }
+
+    // 정규식으로 유효한 숫자 형식만 허용 (소수점 2자리까지)
+    if (VALID_NUMBER_PATTERN.test(inputValue)) {
+      const numericValue = parseFloat(inputValue);
+      field.onChange(numericValue);
+    }
+    // 유효하지 않은 입력은 이전 값 유지 (리렌더링 방지)
+  };
+
+  // 붙여넣기 처리 (정규식으로 필터링)
+  const handlePaste = (
+    e: React.ClipboardEvent<HTMLInputElement>,
+    field: ControllerRenderProps<EstimateKrwFormData, "amount">
+  ) => {
+    e.preventDefault();
+    const pastedText = e.clipboardData.getData('text').replace(/,/g, '');
+
+    if (VALID_NUMBER_PATTERN.test(pastedText) || pastedText === '') {
+      const numericValue = pastedText === '' ? 0 : parseFloat(pastedText);
+      field.onChange(numericValue);
+    }
+  };
 
   return (
     <Box variant="form" className="w-full h-full border-border-wallet">
@@ -202,10 +263,9 @@ const EstimateKrwForm = () => {
                       <div className="relative w-full">
                         <FormInput
                           value={displayValue}
-                          onChange={(e) => {
-                            const numericValue = extractNumber(e.target.value);
-                            field.onChange(numericValue);
-                          }}
+                          onChange={(e) => handleChange(e, field)}
+                          onKeyDown={handleKeyDown}
+                          onPaste={(e) => handlePaste(e, field)}
                           placeholder="0"
                           className="w-full h-[75px] text-right pr-20"
                         />

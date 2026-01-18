@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "@packages/ui";
 import { Triangle } from "lucide-react";
-import exchange_rates_query_option from "../model/query.option";
+import { exchange_rates_query_option } from "../model/query.option";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import type { CurrencyCode } from "@/shared";
 import type { ResponseExchangeRate } from "@/entities/exchange";

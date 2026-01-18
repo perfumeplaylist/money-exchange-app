@@ -5,14 +5,15 @@ import {
 } from "@tanstack/react-table";
 import { createColumns } from "./columns";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import history_query_option from "../../model/query.option";
+import { history_query_option } from "../../model/query.option";
 
 
 
 const HistoryTable = () => {
 
   const { data: historyData } = useSuspenseQuery({
-    ...history_query_option.getHistory()
+    ...history_query_option.getHistory(),
+    refetchOnMount: 'always'
   });
 
   const columns = createColumns();
@@ -26,7 +27,7 @@ const HistoryTable = () => {
   });
 
   return (
-    <div className="w-full overflow-x-auto pt-4 pb-4 rounded-[16px] border border-border-gray-200 bg-white">
+    <div className="w-full overflow-x-auto overflow-y-auto pt-4 pb-4 rounded-[16px] border border-border-gray-200 bg-white max-h-[552px]">
       <table className="w-full border-collapse">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
