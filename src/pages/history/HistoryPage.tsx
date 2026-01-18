@@ -1,5 +1,5 @@
 import { PageHeader } from "@/shared";
-import HistoryTableSection from "@/widgets/history/history-table-section";
+import { HistoryTableSection } from "@/widgets";
 
 const HistoryPage = () => {
 

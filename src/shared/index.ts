@@ -42,8 +42,7 @@ export {
 
 // Constants
 export * from "./constants/storage";
-
-// Utils
+export { ERROR_MESSAGES } from "./constants/error";// Utils
 export { formatDateTime } from "./utils/formatDate";
 
 // Hooks

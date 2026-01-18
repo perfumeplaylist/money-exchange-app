@@ -1,6 +1,6 @@
 import { Text } from "@packages/ui";
 
-interface ExchangeRateDisplayProps {
+type ExchangeRateDisplayProps = {
   formattedRate: string;
 }
 

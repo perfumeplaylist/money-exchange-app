@@ -1,7 +1,5 @@
-import SearchExchangeRateLatest from "@/features/search-exchange-rate-latest/ui/search-exchange-rate-latest";
-import { SearchExchangeRateLatestSkeleton } from "@/features/search-exchange-rate-latest";
-import SearchWalletsBox from "@/features/search-wallets/ui/search-wallets-box";
-import { SearchWalletsBoxSkeleton } from "@/features/search-wallets";
+import { SearchExchangeRateLatest, SearchExchangeRateLatestSkeleton } from "@/features/search-exchange-rate-latest";
+import { SearchWalletsBox, SearchWalletsBoxSkeleton } from "@/features/search-wallets";
 import { SectionErrorBoundary, CurrencyError, WalletError } from "@/shared";
 import { Flex } from "@packages/ui";
 import { Suspense } from "react";

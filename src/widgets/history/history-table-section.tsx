@@ -1,10 +1,10 @@
 import { memo, Suspense } from "react";
 import { HistoryTableSkeleton, HistoryTableContent } from "@/features/search-exchange-history";
-import { SectionErrorBoundary, DomainError } from "@/shared";
+import { SectionErrorBoundary, ApiError } from "@/shared";
 
 const HistoryTableSection = memo(() => {
   return (
-    <SectionErrorBoundary errorType={DomainError}>
+    <SectionErrorBoundary errorType={ApiError}>
       <Suspense fallback={<HistoryTableSkeleton />}>
         <HistoryTableContent />
       </Suspense>

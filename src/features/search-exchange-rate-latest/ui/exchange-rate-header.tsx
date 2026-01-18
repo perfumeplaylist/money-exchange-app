@@ -1,7 +1,7 @@
 import { Flex, Text } from "@packages/ui";
 import type { CurrencyCode } from "@/shared";
 
-interface ExchangeRateHeaderProps {
+type ExchangeRateHeaderProps = {
   currency: CurrencyCode;
   currencyCode: CurrencyCode;
 }

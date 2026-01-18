@@ -1,3 +1,5 @@
+import type { ErrorCode } from '../errors/types';
+
 // API 공통 에러 코드
 export const API_ERROR_CODE = {
   BAD_REQUEST: 'BAD_REQUEST',
@@ -23,3 +25,26 @@ export const CURRENCY_ERROR_CODE = {
   INVALID_EXCHANGE_RATE_CURRENCY: 'INVALID_EXCHANGE_RATE_CURRENCY',
   UNSUPPORTED_CURRENCY_FOR_KRW_CONVERSION: 'UNSUPPORTED_CURRENCY_FOR_KRW_CONVERSION',
 } as const;
+
+// 에러 코드별 사용자 메시지
+export const ERROR_MESSAGES: Partial<Record<ErrorCode, string>> = {
+  // API 공통 에러
+  BAD_REQUEST: "잘못된 요청입니다.",
+  NOT_FOUND: "요청한 리소스를 찾을 수 없습니다.",
+  UNAUTHORIZED: "인증이 필요합니다.",
+  VALIDATION_ERROR: "입력값 검증에 실패했습니다.",
+  MISSING_PARAMETER: "필수 파라미터가 누락되었습니다.",
+
+  // Wallet/Exchange 도메인 에러
+  WALLET_INSUFFICIENT_BALANCE: "잔액이 부족합니다.",
+  INVALID_DEPOSIT_AMOUNT: "입금 금액이 유효하지 않습니다.",
+  INVALID_WITHDRAW_AMOUNT: "출금 금액이 유효하지 않습니다.",
+
+  // Currency/Exchange 정책 에러
+  CURRENCY_MISMATCH: "선택한 통화가 일치하지 않습니다.",
+  INVALID_AMOUNT_SCALE: "금액 단위가 올바르지 않습니다.",
+  EXCHANGE_RATE_CURRENCY_MISMATCH: "환율 통화가 일치하지 않습니다.",
+  UNSUPPORTED_FOREX_CONVERSION_CURRENCY: "지원하지 않는 외환 변환 통화입니다.",
+  INVALID_EXCHANGE_RATE_CURRENCY: "유효하지 않은 환율 통화입니다.",
+  UNSUPPORTED_CURRENCY_FOR_KRW_CONVERSION: "원화 변환을 지원하지 않는 통화입니다.",
+};

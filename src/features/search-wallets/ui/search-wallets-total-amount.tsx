@@ -1,5 +1,5 @@
 import { Flex, Text } from "@packages/ui"
-import formatCurrencyAmount from "@/entities/wallet/utils/format-currency-amount";
+import { formatCurrencyAmount } from "@/entities";
 import type { GetWalletsResponse } from "@/entities";
 
 type SearchWalletsTotalAmountProps = {

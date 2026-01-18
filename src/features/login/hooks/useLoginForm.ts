@@ -4,8 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import login_query_option from "../model/query.option";
-import { setLocalStorage } from "@/shared/utils/storage";
-import { storage_key } from "@/shared";
+import { setLocalStorage, storage_key } from "@/shared";
 
 const useLoginForm = () => {
   const form = useForm<LoginFormData>({

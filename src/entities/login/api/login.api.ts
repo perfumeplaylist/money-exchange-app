@@ -1,15 +1,13 @@
 import type { LoginFormData } from "@/features/login";
 import { httpClient } from "@/shared/utils/HttpClient";
+import type { PostLoginResponse } from "../model/types";
 
-type LoginResponse = {
-  memberId: number;
-  token: string;
-};
+
 
 export const loginApi = (data: LoginFormData) => {
   const url = "/auth/login";
 
-  return httpClient.post<LoginResponse>(url, null, {
+  return httpClient.post<PostLoginResponse>(url, null, {
     params: { email: data.email },
   });
 };

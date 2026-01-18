@@ -1,11 +1,13 @@
-import { GlobalErrorBoundary } from "@/shared";
+import { GlobalErrorBoundary, TopErrorBoundary } from "@/shared";
 import Provider from "./provider/Provider";
 
 const App = () => {
   return (
-    <GlobalErrorBoundary>
-      <Provider />
-    </GlobalErrorBoundary>
+    <TopErrorBoundary>
+      <GlobalErrorBoundary>
+        <Provider />
+      </GlobalErrorBoundary>
+    </TopErrorBoundary>
   );
 };
 

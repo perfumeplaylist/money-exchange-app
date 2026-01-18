@@ -1,7 +1,7 @@
 import { Flex, Text } from "@packages/ui";
 import { Triangle } from "lucide-react";
 
-interface ExchangeRateChangeProps {
+type ExchangeRateChangeProps = {
   formattedChangePercentage: string;
   isIncrease: boolean;
   isDecrease: boolean;

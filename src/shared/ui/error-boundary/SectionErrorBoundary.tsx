@@ -28,19 +28,13 @@ export class SectionErrorBoundary extends Component<
   }
 
   static getDerivedStateFromError(
-    error: Error,
-    props: SectionErrorBoundaryProps
-  ): SectionErrorBoundaryState | null {
-    // props.errorType에 해당하는 에러만 처리
-    if (error instanceof props.errorType) {
-      return {
-        hasError: true,
-        error,
-      };
-    }
-
-    // 담당하지 않는 에러는 null을 반환하여 상위로 전파
-    return null;
+    error: Error
+  ): SectionErrorBoundaryState {
+    // 모든 에러를 상태에 저장 (타입 체크는 render에서 수행)
+    return {
+      hasError: true,
+      error,
+    };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -52,14 +46,11 @@ export class SectionErrorBoundary extends Component<
         errorInfo
       );
     }
-
-    // 담당하지 않는 에러는 상위로 전파
-    if (!(error instanceof this.props.errorType)) {
-      throw error;
-    }
   }
 
   handleReset = () => {
+    // onReset이 있으면 먼저 실행 (예: 쿼리 refetch)
+    // 에러 바운더리 상태 리셋
     this.setState({
       hasError: false,
       error: null,
@@ -67,7 +58,7 @@ export class SectionErrorBoundary extends Component<
   };
 
   render() {
-    // 담당하지 않는 에러는 상위로 전파
+    // 에러가 있고, 담당하지 않는 에러 타입이면 상위로 전파
     if (
       this.state.error &&
       !(this.state.error instanceof this.props.errorType)
@@ -75,6 +66,7 @@ export class SectionErrorBoundary extends Component<
       throw this.state.error;
     }
 
+    // 담당하는 에러 타입이면 FallbackUI 표시
     if (this.state.hasError && this.state.error) {
       return (
         <FallbackUI
