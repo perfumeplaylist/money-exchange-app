@@ -15,6 +15,7 @@ export const createColumns = (): ColumnDef<GetOrdersResponse>[] => {
       id: "orderId",
       accessorKey: "orderId",
       header: "거래 ID",
+      enableSorting: true,
       minSize: columnWidth.orderId,
       size: columnWidth.orderId,
       cell: ({ getValue }) => {
@@ -26,6 +27,12 @@ export const createColumns = (): ColumnDef<GetOrdersResponse>[] => {
       id: "orderedAt",
       accessorKey: "orderedAt",
       header: "거래 일시",
+      enableSorting: true,
+      sortingFn: (rowA, rowB) => {
+        const dateA = new Date(rowA.original.orderedAt).getTime();
+        const dateB = new Date(rowB.original.orderedAt).getTime();
+        return dateA - dateB;
+      },
       minSize: columnWidth.orderedAt,
       size: columnWidth.orderedAt,
       cell: ({ getValue }) => {
@@ -37,6 +44,7 @@ export const createColumns = (): ColumnDef<GetOrdersResponse>[] => {
       id: "fromAmount",
       accessorKey: "fromAmount",
       header: "매수 금액",
+      enableSorting: true,
       minSize: columnWidth.fromAmount,
       size: columnWidth.fromAmount,
       cell: ({ row }) => {
@@ -49,6 +57,7 @@ export const createColumns = (): ColumnDef<GetOrdersResponse>[] => {
       id: "appliedRate",
       accessorKey: "appliedRate",
       header: "체결 환율",
+      enableSorting: true,
       minSize: columnWidth.appliedRate,
       size: columnWidth.appliedRate,
       cell: ({ getValue }) => {
@@ -60,6 +69,7 @@ export const createColumns = (): ColumnDef<GetOrdersResponse>[] => {
       id: "toAmount",
       accessorKey: "toAmount",
       header: "매도 금액",
+      enableSorting: true,
       minSize: columnWidth.toAmount,
       size: columnWidth.toAmount,
       cell: ({ row }) => (

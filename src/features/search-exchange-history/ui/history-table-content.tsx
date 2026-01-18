@@ -1,13 +1,14 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useExchangeHistory } from "../hooks/useExchangeHistory";
 import { createColumns } from "./columns";
 import { calculateColumnWidths } from "../utils";
-import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, getSortedRowModel, type SortingState } from "@tanstack/react-table";
 import TableHeader from "./table-header";
 import TableBody from "./table-body";
 
 const HistoryTableContent = () => {
   const { historyData } = useExchangeHistory();
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const columns = useMemo(() => createColumns(), []);
 
@@ -17,6 +18,11 @@ const HistoryTableContent = () => {
     data: historyData || [],
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
+    state: {
+      sorting,
+    },
   });
 
   return (

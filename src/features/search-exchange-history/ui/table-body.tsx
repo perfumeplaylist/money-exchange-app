@@ -10,6 +10,8 @@ type TableBodyProps = {
 }
 
 const TableBody = ({ table, historyData, columnWidths }: TableBodyProps) => {
+  const rowModel = table.getRowModel();
+  
   const TableBodyContent = useMemo(() => {
     if (historyData.length === 0) {
       return (
@@ -24,7 +26,7 @@ const TableBody = ({ table, historyData, columnWidths }: TableBodyProps) => {
       );
     }
 
-    const rows = table.getRowModel().rows.map((row) => (
+    const rows = rowModel.rows.map((row) => (
       <tr key={row.id}>
         {row.getVisibleCells().map((cell) => {
           const columnId = getColumnId(cell.column);
@@ -46,7 +48,7 @@ const TableBody = ({ table, historyData, columnWidths }: TableBodyProps) => {
     ));
 
     // 빈 공간 채우기
-    const remainingHeight = 552 - table.getRowModel().rows.length * 49;
+    const remainingHeight = 552 - rowModel.rows.length * 49;
     if (remainingHeight > 0) {
       rows.push(
         <tr key="spacer">
@@ -60,7 +62,7 @@ const TableBody = ({ table, historyData, columnWidths }: TableBodyProps) => {
     }
 
     return rows;
-  }, [historyData.length, table, columnWidths]);
+  }, [historyData.length, rowModel.rows, columnWidths, table]);
 
   return <tbody>{TableBodyContent}</tbody>;
 };
