@@ -4,7 +4,7 @@ import type { GetOrdersResponse } from "../model/types";
 
 
 export const getOrdersApi = () => {
-  const url = "/ordersㅁ";
+  const url = "/orders";
 
   return httpClient.get<GetOrdersResponse[]>(url);
 };
