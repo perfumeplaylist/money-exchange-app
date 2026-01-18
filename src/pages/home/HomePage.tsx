@@ -34,6 +34,7 @@ const HomePage = () => {
             </Suspense>
           </Flex>
         </Flex>
+
         <section className="flex-1">
           <EstimateKrwForm />
         </section>

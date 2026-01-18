@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { CurrencyCode } from "@/shared";
 
-export const estimateKrwSchema = z.object({
+export const estimateQuoteSchema = z.object({
   currency: z.custom<CurrencyCode>((val) => {
     return val === "USD" || val === "JPY";
   }, {
@@ -27,4 +27,4 @@ export const estimateKrwSchema = z.object({
     ),
 });
 
-export type EstimateKrwFormData = z.infer<typeof estimateKrwSchema>;
+export type EstimateQuoteFormData = z.infer<typeof estimateQuoteSchema>;
