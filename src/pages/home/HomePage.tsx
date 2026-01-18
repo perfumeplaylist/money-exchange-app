@@ -1,6 +1,6 @@
 import { EstimateKrwForm } from "@/features/exchange/estimate-krw";
-import SearchExchangeRateLatest from "@/features/exchange/search-orders/ui/SearchExchangeRateLatest";
-import SearchWallets from "@/features/wallets/ui/search-wallets";
+import SearchExchangeRateLatest from "@/features/search-exchange-rate-latest/ui/search-exchange-rate-latest";
+import SearchWalletsBox from "@/features/search-wallets/ui/search-wallets-box";
 import { PageHeader } from "@/shared";
 import {
   Flex
@@ -30,7 +30,7 @@ const HomePage = () => {
               </Suspense>
             </Flex>
             <Suspense fallback={<div>Loading...</div>}>
-              <SearchWallets />
+              <SearchWalletsBox />
             </Suspense>
           </Flex>
         </Flex>
